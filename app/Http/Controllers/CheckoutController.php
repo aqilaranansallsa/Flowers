@@ -76,6 +76,14 @@ class CheckoutController extends Controller
             foreach ($products as $product) {
                 $qty = $cart[$product->id];
 
+                // Cek stok sebelum pesanan dibuat
+                if ($product->stock < $qty) {
+                    abort(
+                        422,
+                        'Stok produk ' . $product->name . ' tidak mencukupi.'
+                    );
+                }
+
                 $total += $product->price * $qty;
             }
 
@@ -104,10 +112,15 @@ class CheckoutController extends Controller
                     'price' => $product->price,
                     'subtotal' => $product->price * $qty,
                 ]);
+
+                // Kurangi stok sesuai jumlah yang dibeli
+                $product->decrement('stock', $qty);
             }
 
+            // Kosongkan keranjang setelah pesanan berhasil
             $request->session()->forget('cart');
 
+            // Simpan ID pesanan untuk redirect
             $request->session()->put('order_success', $order->id);
         });
 

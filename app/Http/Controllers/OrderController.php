@@ -9,6 +9,7 @@ class OrderController extends Controller
 {
     /**
      * Menampilkan semua pesanan.
+     * Digunakan untuk admin.
      */
     public function index()
     {
@@ -17,6 +18,19 @@ class OrderController extends Controller
             ->get();
 
         return view('orders.index', compact('orders'));
+    }
+
+    /**
+     * Menampilkan pesanan milik user yang sedang login.
+     */
+    public function myOrders()
+    {
+        $orders = Order::with('orderDetails.product')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('orders.my-orders', compact('orders'));
     }
 
     /**
@@ -29,6 +43,7 @@ class OrderController extends Controller
 
     /**
      * Menyimpan pesanan baru.
+     * Digunakan untuk kebutuhan admin.
      */
     public function store(Request $request)
     {
@@ -58,13 +73,19 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load(['user', 'orderDetails.product']);
+        // Customer hanya boleh melihat pesanan miliknya sendiri.
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $order->load(['orderDetails.product']);
 
         return view('orders.show', compact('order'));
     }
 
     /**
      * Menampilkan form edit pesanan.
+     * Digunakan untuk kebutuhan admin.
      */
     public function edit(Order $order)
     {
@@ -75,6 +96,7 @@ class OrderController extends Controller
 
     /**
      * Memperbarui data pesanan.
+     * Digunakan untuk kebutuhan admin.
      */
     public function update(Request $request, Order $order)
     {
@@ -98,6 +120,7 @@ class OrderController extends Controller
 
     /**
      * Menghapus pesanan.
+     * Digunakan untuk kebutuhan admin.
      */
     public function destroy(Order $order)
     {
