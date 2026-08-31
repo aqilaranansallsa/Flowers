@@ -12,14 +12,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
-// Produk
+// =====================================================
+// PRODUK CUSTOMER
+// =====================================================
+
 Route::get('/fresh-flower', [ProductController::class, 'index'])
     ->name('products.index');
 
 Route::get('/fresh-flower/{product}', [ProductController::class, 'show'])
     ->name('products.show');
 
-// Keranjang
+// =====================================================
+// KERANJANG
+// =====================================================
+
 Route::get('/keranjang', [CartController::class, 'index'])
     ->name('cart.index');
 
@@ -32,7 +38,10 @@ Route::patch('/keranjang/{product}', [CartController::class, 'update'])
 Route::delete('/keranjang/{product}', [CartController::class, 'remove'])
     ->name('cart.remove');
 
-// Authentication
+// =====================================================
+// AUTHENTICATION
+// =====================================================
+
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->name('login');
 
@@ -48,7 +57,10 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
-// Checkout & Pesanan Saya
+// =====================================================
+// CHECKOUT & PESANAN CUSTOMER
+// =====================================================
+
 Route::middleware('auth')->group(function () {
 
     // Checkout / Melakukan Pemesanan
@@ -66,9 +78,74 @@ Route::middleware('auth')->group(function () {
         ->name('orders.show');
 });
 
-// Admin Dashboard
+// =====================================================
+// ADMIN
+// =====================================================
+
 Route::middleware(['auth', 'admin'])->group(function () {
+
+    // -------------------------------------------------
+    // Dashboard Admin
+    // -------------------------------------------------
 
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
+
+    // -------------------------------------------------
+    // Profil Admin
+    // -------------------------------------------------
+
+    Route::get('/admin/profile', [AdminController::class, 'profile'])
+        ->name('admin.profile');
+
+    Route::put('/admin/profile', [AdminController::class, 'updateProfile'])
+        ->name('admin.profile.update');
+
+    // -------------------------------------------------
+    // Kelola Produk
+    // -------------------------------------------------
+
+    // Daftar produk
+    Route::get('/admin/produk', [ProductController::class, 'adminIndex'])
+        ->name('admin.products.index');
+
+    // Form tambah produk
+    Route::get('/admin/produk/tambah', [ProductController::class, 'create'])
+        ->name('admin.products.create');
+
+    // Simpan produk
+    Route::post('/admin/produk', [ProductController::class, 'store'])
+        ->name('admin.products.store');
+
+    // Form edit produk
+    Route::get('/admin/produk/{product}/edit', [ProductController::class, 'edit'])
+        ->name('admin.products.edit');
+
+    // Update produk
+    Route::put('/admin/produk/{product}', [ProductController::class, 'update'])
+        ->name('admin.products.update');
+
+    // Hapus produk
+    Route::delete('/admin/produk/{product}', [ProductController::class, 'destroy'])
+        ->name('admin.products.destroy');
+
+    // -------------------------------------------------
+    // KELOLA PESANAN
+    // -------------------------------------------------
+
+    // Daftar semua pesanan
+    Route::get('/admin/pesanan', [OrderController::class, 'adminIndex'])
+        ->name('admin.orders.index');
+
+    // Detail pesanan
+    Route::get('/admin/pesanan/{order}', [OrderController::class, 'adminShow'])
+        ->name('admin.orders.show');
+
+    // Form ubah status pesanan
+    Route::get('/admin/pesanan/{order}/edit', [OrderController::class, 'edit'])
+        ->name('admin.orders.edit');
+
+    // Proses menyimpan perubahan status
+    Route::put('/admin/pesanan/{order}', [OrderController::class, 'update'])
+        ->name('admin.orders.update');
 });

@@ -13,11 +13,42 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['user', 'orderDetails.product'])
+        $orders = Order::with([
+            'user',
+            'orderDetails.product'
+        ])
             ->latest()
             ->get();
 
         return view('orders.index', compact('orders'));
+    }
+
+    /**
+     * Menampilkan semua pesanan untuk admin.
+     */
+    public function adminIndex()
+    {
+        $orders = Order::with([
+            'user',
+            'orderDetails.product'
+        ])
+            ->latest()
+            ->get();
+
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    /**
+     * Menampilkan detail pesanan untuk admin.
+     */
+    public function adminShow(Order $order)
+    {
+        $order->load([
+            'user',
+            'orderDetails.product'
+        ]);
+
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -35,6 +66,7 @@ class OrderController extends Controller
 
     /**
      * Menampilkan form membuat pesanan.
+     * Digunakan untuk kebutuhan admin.
      */
     public function create()
     {
@@ -64,12 +96,12 @@ class OrderController extends Controller
         Order::create($validated);
 
         return redirect()
-            ->route('orders.index')
+            ->route('admin.orders.index')
             ->with('success', 'Pesanan berhasil ditambahkan.');
     }
 
     /**
-     * Menampilkan detail pesanan.
+     * Menampilkan detail pesanan untuk customer.
      */
     public function show(Order $order)
     {
@@ -78,25 +110,29 @@ class OrderController extends Controller
             abort(403);
         }
 
-        $order->load(['orderDetails.product']);
+        $order->load([
+            'orderDetails.product'
+        ]);
 
         return view('orders.show', compact('order'));
     }
 
     /**
-     * Menampilkan form edit pesanan.
-     * Digunakan untuk kebutuhan admin.
+     * Menampilkan form ubah status pesanan untuk admin.
      */
     public function edit(Order $order)
     {
-        $order->load(['user', 'orderDetails.product']);
+        $order->load([
+            'user',
+            'orderDetails.product'
+        ]);
 
-        return view('orders.edit', compact('order'));
+        return view('admin.orders.edit', compact('order'));
     }
 
     /**
      * Memperbarui data pesanan.
-     * Digunakan untuk kebutuhan admin.
+     * Digunakan untuk admin.
      */
     public function update(Request $request, Order $order)
     {
@@ -114,20 +150,20 @@ class OrderController extends Controller
         $order->update($validated);
 
         return redirect()
-            ->route('orders.index')
+            ->route('admin.orders.index')
             ->with('success', 'Pesanan berhasil diperbarui.');
     }
 
     /**
      * Menghapus pesanan.
-     * Digunakan untuk kebutuhan admin.
+     * Digunakan untuk admin.
      */
     public function destroy(Order $order)
     {
         $order->delete();
 
         return redirect()
-            ->route('orders.index')
+            ->route('admin.orders.index')
             ->with('success', 'Pesanan berhasil dihapus.');
     }
 }
