@@ -18,8 +18,8 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #fffafb;
-            color: #222;
+            background-color: #fffaf0;
+            color: #333;
         }
 
         /* =====================================================
@@ -32,8 +32,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #ffffff;
-            border-bottom: 1px solid #f0cbd5;
+            background-color: #fffdf7;
+            border-bottom: 1px solid #f2d6a2;
         }
 
         .brand {
@@ -53,13 +53,13 @@
             font-family: Georgia, serif;
             font-style: italic;
             font-size: 25px;
-            color: #d94f83;
+            color: #d95f86;
         }
 
         .brand-text p {
             margin: 4px 0 0;
             font-size: 12px;
-            color: #666;
+            color: #77705f;
         }
 
         .nav-menu {
@@ -70,19 +70,19 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: #333;
+            color: #4d493f;
             font-size: 14px;
             padding: 10px 4px;
             transition: 0.2s;
         }
 
         .nav-menu a:hover {
-            color: #d94f83;
+            color: #d95f86;
         }
 
         .nav-menu .active {
-            color: #d94f83;
-            border-bottom: 2px solid #d94f83;
+            color: #d95f86;
+            border-bottom: 2px solid #e6b84f;
         }
 
         /* =====================================================
@@ -95,35 +95,38 @@
             justify-content: center;
             gap: 8px;
             padding: 9px 18px !important;
-            border: 1px solid #d98ba5;
+            border: 1px solid #e2b86d;
             border-radius: 6px;
-            color: #333 !important;
-            background-color: #ffffff;
+            color: #4d493f !important;
+            background-color: #fffdf7;
         }
 
         .nav-button:hover {
-            background-color: #fff0f5;
+            background-color: #fff4d8;
         }
 
         .register-button {
-            background-color: #f8d5e1 !important;
+            background-color: #f8d6df !important;
+            border-color: #e7a3b6 !important;
         }
 
         .register-button:hover {
-            background-color: #f4bfd0 !important;
+            background-color: #f4bdce !important;
         }
 
         .nav-icon {
             width: 20px;
             height: 20px;
-            stroke: #d94f83;
+            stroke: #d95f86;
             stroke-width: 1.8;
             fill: none;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
-        /* LOGOUT */
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
 
         .logout-form {
             display: inline;
@@ -134,16 +137,16 @@
             align-items: center;
             gap: 8px;
             padding: 9px 18px;
-            border: 1px solid #d98ba5;
+            border: 1px solid #e2b86d;
             border-radius: 6px;
-            background-color: white;
+            background-color: #fffdf7;
             cursor: pointer;
             font-size: 14px;
-            color: #333;
+            color: #4d493f;
         }
 
         .logout-button:hover {
-            background-color: #fff0f5;
+            background-color: #fff4d8;
         }
 
         /* =====================================================
@@ -155,10 +158,10 @@
             margin: 15px auto;
             padding: 12px 18px;
             text-align: center;
-            background-color: #fff0f5;
-            border: 1px solid #efb5c8;
+            background-color: #fff1d0;
+            border: 1px solid #e6c06f;
             border-radius: 6px;
-            color: #b73567;
+            color: #b34f6e;
         }
 
         /* =====================================================
@@ -171,11 +174,12 @@
             align-items: center;
             padding: 45px 8%;
             background: linear-gradient(
-                90deg,
-                #fffafb,
-                #fff0f5
+                110deg,
+                #fff8df 0%,
+                #fff4d2 45%,
+                #fce3e9 100%
             );
-            border-bottom: 1px solid #efc8d4;
+            border-bottom: 1px solid #efd49b;
         }
 
         .hero-content {
@@ -186,21 +190,21 @@
         .hero-content h1 {
             margin: 0 0 12px;
             font-size: 46px;
-            color: #c93670;
+            color: #d95f86;
         }
 
         .hero-content h2 {
             margin: 0 0 18px;
             font-size: 19px;
             font-weight: normal;
-            color: #333;
+            color: #4d493f;
         }
 
         .hero-content p {
             max-width: 480px;
             line-height: 1.7;
             font-size: 15px;
-            color: #555;
+            color: #6d685d;
             margin-bottom: 25px;
         }
 
@@ -210,16 +214,24 @@
             gap: 8px;
             padding: 12px 25px;
             text-decoration: none;
-            color: #8d244d;
-            background-color: #f8c6d6;
-            border: 1px solid #df8fa9;
+            color: #9c3f60;
+            background: linear-gradient(
+                90deg,
+                #f5d56d,
+                #f4b8c9
+            );
+            border: 1px solid #dfad66;
             border-radius: 6px;
             font-size: 14px;
             transition: 0.2s;
         }
 
         .hero-button:hover {
-            background-color: #f3b3c8;
+            background: linear-gradient(
+                90deg,
+                #efc957,
+                #eea5bb
+            );
         }
 
         /* FOTO BANNER */
@@ -247,15 +259,15 @@
             min-height: 135px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            background-color: #ffffff;
-            border-bottom: 1px solid #efc8d4;
+            background-color: #fffdf7;
+            border-bottom: 1px solid #efd8a9;
         }
 
         .advantage {
             display: flex;
             align-items: center;
             padding: 22px 30px;
-            border-right: 1px solid #e7cbd3;
+            border-right: 1px solid #eadbb8;
         }
 
         .advantage:last-child {
@@ -266,19 +278,23 @@
             width: 68px;
             height: 68px;
             min-width: 68px;
-            border: 1.5px solid #df6f98;
+            border: 1.5px solid #e1b84f;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 16px;
-            background-color: #fffafd;
+            background: linear-gradient(
+                145deg,
+                #fff6d5,
+                #fce0e8
+            );
         }
 
         .advantage-icon svg {
             width: 34px;
             height: 34px;
-            stroke: #d94f83;
+            stroke: #d95f86;
             stroke-width: 1.6;
             fill: none;
             stroke-linecap: round;
@@ -288,14 +304,14 @@
         .advantage-text h3 {
             margin: 0 0 7px;
             font-size: 14px;
-            color: #333;
+            color: #4d493f;
         }
 
         .advantage-text p {
             margin: 0;
             font-size: 12px;
             line-height: 1.5;
-            color: #555;
+            color: #77705f;
         }
 
         /* =====================================================
@@ -303,14 +319,22 @@
         ===================================================== */
 
         .products-section {
-            padding: 38px 8% 45px;
-            background-color: #fffafb;
+            padding: 38px 8% 55px;
+            background: linear-gradient(
+                180deg,
+                #fffaf0,
+                #fff6e6
+            );
         }
 
         .section-line {
             width: 45px;
             height: 3px;
-            background-color: #e87599;
+            background: linear-gradient(
+                90deg,
+                #e5bd4f,
+                #e27a9b
+            );
             margin: 0 auto 10px;
             border-radius: 5px;
         }
@@ -319,14 +343,14 @@
             text-align: center;
             margin: 0;
             font-size: 25px;
-            color: #333;
+            color: #4d493f;
         }
 
         .section-subtitle {
             text-align: center;
             margin: 9px 0 30px;
             font-size: 14px;
-            color: #666;
+            color: #77705f;
         }
 
         .products {
@@ -342,10 +366,16 @@
             display: flex;
             gap: 18px;
             padding: 14px;
-            background-color: #ffffff;
-            border: 1px solid #d9b8c3;
+            background-color: #fffdf8;
+            border: 1px solid #e5cc96;
             border-radius: 9px;
-            box-shadow: 0 3px 10px rgba(217, 79, 131, 0.08);
+            box-shadow: 0 3px 10px rgba(217, 145, 104, 0.10);
+            transition: 0.25s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(217, 145, 104, 0.16);
         }
 
         .product-image {
@@ -353,7 +383,7 @@
             height: 185px;
             object-fit: cover;
             border-radius: 6px;
-            background-color: #fff2f6;
+            background-color: #fff2d8;
         }
 
         .no-photo {
@@ -363,10 +393,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            border: 1px dashed #e2a9ba;
+            border: 1px dashed #dfbb70;
             border-radius: 6px;
-            color: #c7839b;
-            background-color: #fff5f8;
+            color: #c48675;
+            background-color: #fff7e4;
             font-size: 13px;
         }
 
@@ -378,43 +408,51 @@
         .product-info h3 {
             margin: 0 0 9px;
             font-size: 17px;
-            color: #333;
+            color: #4d493f;
         }
 
         .product-description {
             margin: 0 0 12px;
             font-size: 12px;
             line-height: 1.5;
-            color: #555;
+            color: #6d685d;
         }
 
         .product-price {
             margin: 8px 0 4px;
             font-size: 19px;
             font-weight: bold;
-            color: #e56d91;
+            color: #d95f86;
         }
 
         .product-stock {
             margin: 0 0 10px;
             font-size: 12px;
-            color: #555;
+            color: #77705f;
         }
 
         .product-button {
             display: inline-block;
             padding: 8px 16px;
             text-decoration: none;
-            color: #333;
-            border: 1px solid #555;
+            color: #8e4960;
+            border: 1px solid #d8b95f;
             border-radius: 5px;
             font-size: 12px;
-            background-color: white;
+            background: linear-gradient(
+                90deg,
+                #fff1c5,
+                #fbdde6
+            );
         }
 
         .product-button:hover {
-            background-color: #ffe8f0;
-            border-color: #d94f83;
+            background: linear-gradient(
+                90deg,
+                #fbe5a5,
+                #f6c5d4
+            );
+            border-color: #d95f86;
         }
 
         .all-products {
@@ -426,32 +464,153 @@
             display: inline-block;
             padding: 10px 22px;
             text-decoration: none;
-            color: #8d244d;
-            background-color: #f8d5e1;
-            border: 1px solid #df8fa9;
+            color: #8e4960;
+            background: linear-gradient(
+                90deg,
+                #f6d66f,
+                #f3bdcf
+            );
+            border: 1px solid #dfad66;
             border-radius: 6px;
             font-size: 13px;
         }
 
         .all-products a:hover {
-            background-color: #f3bdcf;
+            background: linear-gradient(
+                90deg,
+                #efc957,
+                #efa8bd
+            );
         }
 
         /* =====================================================
            FOOTER
         ===================================================== */
 
-        footer {
-            padding: 25px;
-            text-align: center;
-            background-color: #fff0f5;
-            border-top: 1px solid #efc8d4;
-            color: #666;
-            font-size: 13px;
+        .footer {
+            background: linear-gradient(
+                135deg,
+                #f8d5df 0%,
+                #fff1d2 48%,
+                #f9dfc9 100%
+            );
+            border-top: 1px solid #e7c36f;
+            color: #5d554d;
         }
 
-        footer p {
-            margin: 5px;
+        .footer-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 45px 35px 30px;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            padding-right: 20px;
+        }
+
+        .footer-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 8px;
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-style: italic;
+            color: #c9577b;
+        }
+
+        .footer-brand p {
+            margin: 0;
+            max-width: 300px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #756d64;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 16px;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            color: #9f526d;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            display: block;
+            width: 28px;
+            height: 2px;
+            margin-top: 7px;
+            background: #d9ae4d;
+            border-radius: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6d655c;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #d95f86;
+            padding-left: 4px;
+        }
+
+        .footer-service {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #6d655c;
+        }
+
+        .service-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            stroke: #d95f86;
+            stroke-width: 1.7;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(183, 139, 64, 0.25);
+            padding: 17px 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 12px;
+            color: #7c7168;
+        }
+
+        .footer-bottom span {
+            color: #c9577b;
+            font-weight: bold;
         }
 
         /* =====================================================
@@ -484,6 +643,11 @@
                 grid-template-columns: 1fr;
                 max-width: 700px;
             }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
         }
 
         @media (max-width: 750px) {
@@ -527,7 +691,7 @@
 
             .advantage {
                 border-right: none;
-                border-bottom: 1px solid #e7cbd3;
+                border-bottom: 1px solid #eadbb8;
             }
 
             .product-card {
@@ -541,6 +705,17 @@
                 width: 100%;
                 max-width: 300px;
             }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 35px 25px 25px;
+            }
+
+            .footer-brand {
+                padding-right: 0;
+            }
+
         }
 
     </style>
@@ -557,13 +732,13 @@
 
 <nav class="navbar">
 
-    {{-- LOGO --}}
+    {{-- LOGO BARU --}}
 
     <div class="brand">
 
         <img
-            src="{{ asset('images/logo-fresh-flower.png') }}"
-            alt="Fresh Flower"
+            src="{{ asset('images/logo-florea.png') }}"
+            alt="Floréa"
             class="logo-image"
         >
 
@@ -586,8 +761,6 @@
 
     <div class="nav-menu">
 
-        {{-- HOME --}}
-
         <a
             href="{{ route('home') }}"
             class="active"
@@ -595,29 +768,18 @@
             Home
         </a>
 
-
-        {{-- FRESH FLOWER --}}
-
         <a href="{{ route('products.index') }}">
             Fresh Flower
         </a>
-
-
-        {{-- KERANJANG --}}
 
         <a href="{{ route('cart.index') }}">
             Keranjang
         </a>
 
-
-        {{-- PESANAN SAYA --}}
-
         <a href="{{ route('orders.my') }}">
             Pesanan Saya
         </a>
 
-
-        {{-- LOGIN / REGISTER --}}
 
         @guest
 
@@ -815,31 +977,17 @@
 
             <svg viewBox="0 0 24 24">
 
-                <circle
-                    cx="12"
-                    cy="9"
-                    r="3"
-                />
+                <circle cx="12" cy="9" r="3" />
 
-                <path
-                    d="M12 12v9"
-                />
+                <path d="M12 12v9" />
 
-                <path
-                    d="M12 15c-3-2-6-1-7 2 3 1 6 0 7-2"
-                />
+                <path d="M12 15c-3-2-6-1-7 2 3 1 6 0 7-2" />
 
-                <path
-                    d="M12 17c3-2 6-1 7 2-3 1-6 0-7-2"
-                />
+                <path d="M12 17c3-2 6-1 7 2-3 1-6 0-7-2" />
 
-                <path
-                    d="M12 9c-2-2-1-5 1-6 2 2 2 4-1 6"
-                />
+                <path d="M12 9c-2-2-1-5 1-6 2 2 2 4-1 6" />
 
-                <path
-                    d="M10 10c-3 0-5-2-4-5 3 0 5 2 4 5"
-                />
+                <path d="M10 10c-3 0-5-2-4-5 3 0 5 2 4 5" />
 
             </svg>
 
@@ -876,21 +1024,11 @@
                     rx="1"
                 />
 
-                <path
-                    d="M14 9h4l4 4v3h-8"
-                />
+                <path d="M14 9h4l4 4v3h-8" />
 
-                <circle
-                    cx="6"
-                    cy="18"
-                    r="2"
-                />
+                <circle cx="6" cy="18" r="2" />
 
-                <circle
-                    cx="18"
-                    cy="18"
-                    r="2"
-                />
+                <circle cx="18" cy="18" r="2" />
 
             </svg>
 
@@ -923,9 +1061,7 @@
                     d="M12 3l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-3z"
                 />
 
-                <path
-                    d="M8 12l2.5 2.5L16 9"
-                />
+                <path d="M8 12l2.5 2.5L16 9" />
 
             </svg>
 
@@ -954,9 +1090,7 @@
 
             <svg viewBox="0 0 24 24">
 
-                <path
-                    d="M4 13a8 8 0 0 1 16 0"
-                />
+                <path d="M4 13a8 8 0 0 1 16 0" />
 
                 <rect
                     x="2"
@@ -974,9 +1108,7 @@
                     rx="2"
                 />
 
-                <path
-                    d="M18 19c0 2-2 3-5 3"
-                />
+                <path d="M18 19c0 2-2 3-5 3" />
 
             </svg>
 
@@ -1129,15 +1261,196 @@
      FOOTER
 ===================================================== --}}
 
-<footer>
+<footer class="footer">
 
-    <p>
-        © {{ date('Y') }} Fresh Flower
-    </p>
+    <div class="footer-container">
 
-    <p>
-        Fresh Flower untuk setiap momen istimewa 🌷
-    </p>
+
+        {{-- BRAND --}}
+
+        <div class="footer-brand">
+
+            <img
+                src="{{ asset('images/logo-florea.png') }}"
+                alt="Floréa"
+                class="footer-logo"
+            >
+
+            <h2>
+                Floréa
+            </h2>
+
+            <p>
+                Fresh flowers untuk menghadirkan keindahan
+                dan kebahagiaan di setiap momen spesial Anda.
+            </p>
+
+        </div>
+
+
+        {{-- NAVIGASI --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Navigasi
+            </h3>
+
+            <div class="footer-links">
+
+                <a href="{{ route('home') }}">
+                    Home
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Fresh Flower
+                </a>
+
+                <a href="{{ route('cart.index') }}">
+                    Keranjang
+                </a>
+
+                <a href="{{ route('orders.my') }}">
+                    Pesanan Saya
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {{-- LAYANAN --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Layanan
+            </h3>
+
+            <div class="footer-links">
+
+                <a href="{{ route('products.index') }}">
+                    Bunga Segar
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Pengiriman Cepat
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Pembayaran Aman
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Layanan 24/7
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {{-- INFORMASI --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Tentang Floréa
+            </h3>
+
+            <div class="footer-service">
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z" />
+
+                        <circle
+                            cx="12"
+                            cy="10"
+                            r="2.5"
+                        />
+
+                    </svg>
+
+                    <span>
+                        Fresh Flower untuk berbagai
+                        momen istimewa.
+                    </span>
+
+                </div>
+
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        />
+
+                        <path d="M12 7v5l3 2" />
+
+                    </svg>
+
+                    <span>
+                        Melayani kebutuhan bunga
+                        dengan sepenuh hati.
+                    </span>
+
+                </div>
+
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path d="M20 11a8.1 8.1 0 0 0-15.5-2" />
+
+                        <path d="M4 5v4h4" />
+
+                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2" />
+
+                        <path d="M20 19v-4h-4" />
+
+                    </svg>
+
+                    <span>
+                        Pesanan diproses dengan
+                        aman dan terpercaya.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {{-- FOOTER BOTTOM --}}
+
+    <div class="footer-bottom">
+
+        <p>
+            © {{ date('Y') }} <span>Floréa</span>.
+            All Rights Reserved.
+        </p>
+
+    </div>
 
 </footer>
 

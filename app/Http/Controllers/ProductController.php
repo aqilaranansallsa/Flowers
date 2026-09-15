@@ -10,12 +10,64 @@ class ProductController extends Controller
 {
     /**
      * Menampilkan semua produk untuk customer.
+     * Bisa menggunakan Search dan Filter Kategori.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->get();
+        $search = $request->input('search');
+        $category = $request->input('category');
 
-        return view('products.index', compact('products'));
+        $query = Product::with('photos');
+
+        // =========================
+        // SEARCH PRODUK
+        // =========================
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('type', 'like', "%{$search}%")
+                    ->orWhere('composition', 'like', "%{$search}%");
+            });
+        }
+
+        // =========================
+        // FILTER KATEGORI
+        // =========================
+        if ($category && $category !== 'Semua') {
+
+            if ($category === 'Lainnya') {
+
+                $query->where(function ($q) {
+                    $q->where(function ($q) {
+                        $q->where('type', 'not like', '%Mawar%')
+                            ->where('type', 'not like', '%Lily%')
+                            ->where('type', 'not like', '%Daisy%');
+                    })
+                    ->where(function ($q) {
+                        $q->where('composition', 'not like', '%Mawar%')
+                            ->where('composition', 'not like', '%Lily%')
+                            ->where('composition', 'not like', '%Daisy%');
+                    });
+                });
+
+            } else {
+
+                $query->where(function ($q) use ($category) {
+                    $q->where('type', 'like', "%{$category}%")
+                        ->orWhere('composition', 'like', "%{$category}%");
+                });
+            }
+        }
+
+        $products = $query
+            ->latest()
+            ->get();
+
+        return view('products.index', compact(
+            'products',
+            'search',
+            'category'
+        ));
     }
 
     /**
