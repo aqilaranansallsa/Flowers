@@ -654,61 +654,6 @@
 
 
         /* =====================================================
-           PAGINATION
-        ===================================================== */
-
-        .pagination {
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            gap: 8px;
-
-            margin-top: 38px;
-        }
-
-
-        .page-number {
-            width: 37px;
-            height: 32px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid #d8b95f;
-
-            background-color: #fffdf8;
-
-            color: #555;
-
-            font-size: 12px;
-
-            text-decoration: none;
-
-            border-radius: 4px;
-        }
-
-
-        .page-number:hover {
-            background-color: #f8dce4;
-        }
-
-
-        .page-number.active {
-            background: linear-gradient(
-                135deg,
-                #f5d36d,
-                #f4bfd0
-            );
-
-            color: #704354;
-        }
-
-
-        /* =====================================================
            FOOTER
         ===================================================== */
 
@@ -1493,58 +1438,6 @@
 
                 @endforeach
 
-
-            </div>
-
-
-
-            {{-- =================================================
-                 PAGINATION
-            ================================================== --}}
-
-            <div class="pagination">
-
-                <a
-                    href="#"
-                    class="page-number"
-                >
-                    ●
-                </a>
-
-                <a
-                    href="#"
-                    class="page-number active"
-                >
-                    1
-                </a>
-
-                <a
-                    href="#"
-                    class="page-number"
-                >
-                    2
-                </a>
-
-                <a
-                    href="#"
-                    class="page-number"
-                >
-                    3
-                </a>
-
-                <a
-                    href="#"
-                    class="page-number"
-                >
-                    ─
-                </a>
-
-                <a
-                    href="#"
-                    class="page-number"
-                >
-                    ●
-                </a>
 
             </div>
 

@@ -9,7 +9,6 @@
 
     <title>Detail Produk - Floréa</title>
 
-
     <style>
 
         * {
@@ -20,7 +19,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #fffdf5;
+            background-color: #fffaf0;
             color: #333;
         }
 
@@ -30,23 +29,23 @@
         ===================================================== */
 
         .navbar {
-            min-height: 86px;
+            min-height: 90px;
             padding: 10px 45px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            background: #fffdf8;
+            background-color: #fffdf7;
 
-            border-bottom: 1px solid #e8c875;
+            border-bottom: 1px solid #f2d6a2;
         }
 
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 13px;
+            gap: 12px;
         }
 
 
@@ -74,7 +73,7 @@
 
             font-size: 12px;
 
-            color: #756d60;
+            color: #77705f;
         }
 
 
@@ -89,7 +88,7 @@
         .nav-menu a {
             text-decoration: none;
 
-            color: #3f3b37;
+            color: #4d493f;
 
             font-size: 14px;
 
@@ -104,15 +103,17 @@
         }
 
 
+        /* GARIS AKTIF DISAMAKAN DENGAN FRESH FLOWER */
+
         .nav-menu .active {
             color: #d95f86;
 
-            border-bottom: 3px solid #e5b84d;
+            border-bottom: 2px solid #e6b84f;
         }
 
 
         /* =====================================================
-           LOGIN REGISTER
+           LOGIN / REGISTER
         ===================================================== */
 
         .nav-button {
@@ -123,32 +124,32 @@
 
             gap: 8px;
 
-            padding: 8px 18px !important;
+            padding: 9px 18px !important;
 
-            border: 1px solid #e4b95d;
+            border: 1px solid #e2b86d;
 
             border-radius: 6px;
 
-            background: #fffdf8;
+            color: #4d493f !important;
 
-            color: #333 !important;
+            background-color: #fffdf7;
         }
 
 
         .nav-button:hover {
-            background: #fff3cf;
+            background-color: #fff4d8;
         }
 
 
         .register-button {
-            background: #f9d7e1 !important;
+            background-color: #f8d6df !important;
 
-            border-color: #e7a4b7 !important;
+            border-color: #e7a3b6 !important;
         }
 
 
         .register-button:hover {
-            background: #f4bdce !important;
+            background-color: #f4bdce !important;
         }
 
 
@@ -167,6 +168,10 @@
         }
 
 
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
         .logout-form {
             display: inline;
         }
@@ -179,24 +184,24 @@
 
             gap: 8px;
 
-            padding: 8px 18px;
+            padding: 9px 18px;
 
-            border: 1px solid #e4b95d;
+            border: 1px solid #e2b86d;
 
             border-radius: 6px;
 
-            background: #fffdf8;
+            background-color: #fffdf7;
 
             cursor: pointer;
 
             font-size: 14px;
 
-            color: #333;
+            color: #4d493f;
         }
 
 
         .logout-button:hover {
-            background: #fff3cf;
+            background-color: #fff4d8;
         }
 
 
@@ -205,11 +210,11 @@
         ===================================================== */
 
         .detail-container {
-            max-width: 1120px;
+            max-width: 1150px;
 
             margin: auto;
 
-            padding: 42px 35px 50px;
+            padding: 35px 30px 55px;
         }
 
 
@@ -233,11 +238,14 @@
 
             padding: 18px;
 
-            border: 1px solid #e8a3b8;
+            border: 1px solid #e2cb98;
 
             border-radius: 7px;
 
-            background: #fffdf8;
+            background-color: #fffdf8;
+
+            box-shadow:
+                0 4px 12px rgba(217, 145, 104, 0.08);
         }
 
 
@@ -259,7 +267,11 @@
 
             border-radius: 5px;
 
-            background: #fff3d2;
+            background: linear-gradient(
+                145deg,
+                #fff1c9,
+                #f8dce4
+            );
         }
 
 
@@ -275,15 +287,15 @@
 
             text-align: center;
 
-            border: 1px dashed #dfb85c;
+            border: 1px dashed #dfbb70;
 
             border-radius: 5px;
 
-            background: #fff7e5;
+            background-color: #fff7e4;
 
-            color: #b98874;
+            color: #c48675;
 
-            font-size: 14px;
+            font-size: 13px;
         }
 
 
@@ -355,7 +367,7 @@
 
             padding: 3px;
 
-            border: 2px solid #e8c26a;
+            border: 2px solid #d8b95f;
 
             border-radius: 6px;
 
@@ -378,7 +390,7 @@
 
 
         .thumbnail.active {
-            border-color: #e3618b;
+            border-color: #d95f86;
 
             box-shadow:
                 0 0 0 2px #f8d6df;
@@ -399,7 +411,7 @@
 
             font-size: 29px;
 
-            color: #292624;
+            color: #4d493f;
         }
 
 
@@ -417,12 +429,12 @@
 
         .price-row strong,
         .stock-row strong {
-            color: #333;
+            color: #4d493f;
         }
 
 
         .price {
-            color: #df628a;
+            color: #d95f86;
 
             font-size: 18px;
 
@@ -442,14 +454,14 @@
         .info-section {
             margin-top: 28px;
 
-            border-top: 1px solid #d8c6a5;
+            border-top: 1px solid #e5d6b4;
         }
 
 
         .info-box {
             padding: 12px 15px;
 
-            border-bottom: 1px solid #d8c6a5;
+            border-bottom: 1px solid #e5d6b4;
         }
 
 
@@ -458,7 +470,7 @@
 
             font-size: 13px;
 
-            color: #393532;
+            color: #4d493f;
         }
 
 
@@ -469,7 +481,7 @@
 
             line-height: 1.6;
 
-            color: #555;
+            color: #6d685d;
         }
 
 
@@ -492,7 +504,7 @@
 
             font-size: 13px;
 
-            color: #333;
+            color: #4d493f;
         }
 
 
@@ -564,13 +576,13 @@
 
             height: 48px;
 
-            border: 1px solid #db6f93;
+            border: 1px solid #d95f86;
 
             border-radius: 5px;
 
             background: linear-gradient(
                 90deg,
-                #e96891,
+                #d95f86,
                 #ee7da0
             );
 
@@ -589,7 +601,7 @@
         .cart-button:hover {
             background: linear-gradient(
                 90deg,
-                #db5b84,
+                #c9577b,
                 #e56c94
             );
         }
@@ -642,7 +654,7 @@
 
             font-size: 14px;
 
-            color: #292624;
+            color: #4d493f;
         }
 
 
@@ -651,38 +663,201 @@
 
             font-size: 12px;
 
-            color: #555;
+            color: #77705f;
         }
 
 
         /* =====================================================
            FOOTER
+           DISAMAKAN DENGAN FRESH FLOWER INDEX
         ===================================================== */
 
-        footer {
-            padding: 30px 20px;
-
-            text-align: center;
-
+        .footer {
             background: linear-gradient(
-                100deg,
-                #ffe8ae,
-                #ffd9e4
+                135deg,
+                #f8d5df 0%,
+                #fff1d2 48%,
+                #f9dfc9 100%
             );
 
-            border-top: 1px solid #e6bd63;
+            border-top: 1px solid #e7c36f;
 
-            color: #635c54;
+            color: #5d554d;
         }
 
 
-        footer p {
-            margin: 5px;
+        .footer-container {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 45px 35px 30px;
+
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+
+            gap: 40px;
         }
 
 
-        footer .footer-title {
-            font-size: 14px;
+        .footer-brand {
+            padding-right: 20px;
+        }
+
+
+        .footer-logo {
+            width: 72px;
+            height: 72px;
+
+            object-fit: contain;
+
+            margin-bottom: 8px;
+        }
+
+
+        .footer-brand h2 {
+            margin: 0 0 8px;
+
+            font-family: Georgia, serif;
+
+            font-size: 25px;
+
+            font-style: italic;
+
+            color: #c9577b;
+        }
+
+
+        .footer-brand p {
+            margin: 0;
+
+            max-width: 300px;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            color: #756d64;
+        }
+
+
+        .footer-column h3 {
+            margin: 0 0 16px;
+
+            font-family: Georgia, serif;
+
+            font-size: 16px;
+
+            color: #9f526d;
+        }
+
+
+        .footer-column h3::after {
+            content: "";
+
+            display: block;
+
+            width: 28px;
+            height: 2px;
+
+            margin-top: 7px;
+
+            background: #d9ae4d;
+
+            border-radius: 5px;
+        }
+
+
+        .footer-links {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .footer-links a {
+            text-decoration: none;
+
+            color: #6d655c;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+
+        .footer-links a:hover {
+            color: #d95f86;
+
+            padding-left: 4px;
+        }
+
+
+        .footer-service {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .service-item {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: #6d655c;
+        }
+
+
+        .service-icon {
+            width: 20px;
+            height: 20px;
+
+            min-width: 20px;
+
+            stroke: #d95f86;
+
+            stroke-width: 1.7;
+
+            fill: none;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+        }
+
+
+        .footer-bottom {
+            border-top: 1px solid rgba(183, 139, 64, 0.25);
+
+            padding: 17px 30px;
+
+            text-align: center;
+        }
+
+
+        .footer-bottom p {
+            margin: 0;
+
+            font-size: 12px;
+
+            color: #7c7168;
+        }
+
+
+        .footer-bottom span {
+            color: #c9577b;
 
             font-weight: bold;
         }
@@ -692,7 +867,7 @@
            RESPONSIVE
         ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1050px) {
 
             .navbar {
                 padding: 10px 25px;
@@ -703,6 +878,15 @@
                 gap: 15px;
             }
 
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
 
             .detail-grid {
                 grid-template-columns: 1fr;
@@ -720,9 +904,11 @@
         }
 
 
-        @media (max-width: 700px) {
+        @media (max-width: 750px) {
 
             .navbar {
+                height: auto;
+
                 flex-direction: column;
 
                 gap: 15px;
@@ -736,12 +922,12 @@
 
                 justify-content: center;
 
-                gap: 10px;
+                gap: 12px;
             }
 
 
             .detail-container {
-                padding: 30px 18px 40px;
+                padding: 25px 18px 40px;
             }
 
 
@@ -774,6 +960,20 @@
                 border-bottom: none;
             }
 
+
+            .footer-container {
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+                padding: 35px 25px 25px;
+            }
+
+
+            .footer-brand {
+                padding-right: 0;
+            }
+
         }
 
     </style>
@@ -794,7 +994,7 @@
     <div class="brand">
 
         <img
-            src="{{ asset('images/logo-fresh-flower.png') }}"
+            src="{{ asset('images/logo-florea.png') }}"
             alt="Floréa"
             class="logo-image"
         >
@@ -842,6 +1042,7 @@
 
         @guest
 
+
             <a
                 href="{{ route('login') }}"
                 class="nav-button"
@@ -886,7 +1087,7 @@
                     />
 
                     <path
-                        d="M2 21c0-4 3-7 7-7"
+                        d="M2 21c0-4.2 3.1-7 7-7"
                     />
 
                     <path
@@ -905,6 +1106,7 @@
 
 
         @else
+
 
             <form
                 action="{{ route('logout') }}"
@@ -944,6 +1146,7 @@
 
             </form>
 
+
         @endguest
 
     </div>
@@ -963,7 +1166,7 @@
 
 
         {{-- =================================================
-             GALERI
+             GALERI FOTO
         ================================================== --}}
 
         <div class="gallery">
@@ -1009,6 +1212,7 @@
 
                     @foreach($product->photos as $index => $photo)
 
+
                         <button
                             type="button"
                             class="thumbnail {{ $index === 0 ? 'active' : '' }}"
@@ -1021,6 +1225,7 @@
                             >
 
                         </button>
+
 
                     @endforeach
 
@@ -1099,8 +1304,6 @@
             </div>
 
 
-
-            {{-- INFO PRODUK --}}
 
             <div class="info-section">
 
@@ -1210,6 +1413,13 @@
 
                 @csrf
 
+                <input
+                    type="hidden"
+                    name="quantity"
+                    id="cartQuantity"
+                    value="1"
+                >
+
 
                 <button
                     type="submit"
@@ -1298,22 +1508,221 @@
      FOOTER
 ===================================================== --}}
 
-<footer>
+<footer class="footer">
 
-    <p class="footer-title">
-        © {{ date('Y') }} Floréa
-    </p>
 
-    <p>
-        Fresh Flowers untuk setiap momen istimewa 🌷
-    </p>
+    <div class="footer-container">
+
+
+        {{-- BRAND --}}
+
+        <div class="footer-brand">
+
+            <img
+                src="{{ asset('images/logo-florea.png') }}"
+                alt="Floréa"
+                class="footer-logo"
+            >
+
+            <h2>
+                Floréa
+            </h2>
+
+            <p>
+                Fresh flowers untuk menghadirkan keindahan
+                dan kebahagiaan di setiap momen spesial Anda.
+            </p>
+
+        </div>
+
+
+        {{-- NAVIGASI --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Navigasi
+            </h3>
+
+            <div class="footer-links">
+
+                <a href="{{ route('home') }}">
+                    Home
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Fresh Flower
+                </a>
+
+                <a href="{{ route('cart.index') }}">
+                    Keranjang
+                </a>
+
+                <a href="{{ route('orders.my') }}">
+                    Pesanan Saya
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {{-- LAYANAN --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Layanan
+            </h3>
+
+            <div class="footer-links">
+
+                <a href="{{ route('products.index') }}">
+                    Bunga Segar
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Pengiriman Cepat
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Pembayaran Aman
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Layanan 24/7
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {{-- TENTANG FLORÉA --}}
+
+        <div class="footer-column">
+
+            <h3>
+                Tentang Floréa
+            </h3>
+
+            <div class="footer-service">
+
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"
+                        />
+
+                        <circle
+                            cx="12"
+                            cy="10"
+                            r="2.5"
+                        />
+
+                    </svg>
+
+                    <span>
+                        Fresh Flower untuk berbagai
+                        momen istimewa.
+                    </span>
+
+                </div>
+
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="9"
+                        />
+
+                        <path
+                            d="M12 7v5l3 2"
+                        />
+
+                    </svg>
+
+                    <span>
+                        Melayani kebutuhan bunga
+                        dengan sepenuh hati.
+                    </span>
+
+                </div>
+
+
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            d="M20 11a8.1 8.1 0 0 0-15.5-2"
+                        />
+
+                        <path
+                            d="M4 5v4h4"
+                        />
+
+                        <path
+                            d="M4 13a8.1 8.1 0 0 0 15.5 2"
+                        />
+
+                        <path
+                            d="M20 19v-4h-4"
+                        />
+
+                    </svg>
+
+                    <span>
+                        Pesanan diproses dengan
+                        aman dan terpercaya.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    {{-- FOOTER BOTTOM --}}
+
+    <div class="footer-bottom">
+
+        <p>
+            © {{ date('Y') }}
+            <span>Floréa</span>.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
 
 </footer>
 
 
 
 {{-- =====================================================
-     JAVASCRIPT GALERI
+     JAVASCRIPT GALERI & JUMLAH PRODUK
 ===================================================== --}}
 
 <script>
@@ -1336,10 +1745,13 @@
 
         currentPhoto = index;
 
-        document.getElementById('mainPhoto').src = photos[currentPhoto];
+        document.getElementById('mainPhoto').src =
+            photos[currentPhoto];
 
 
-        const thumbnails = document.querySelectorAll('.thumbnail');
+        const thumbnails =
+            document.querySelectorAll('.thumbnail');
+
 
         thumbnails.forEach(function(thumbnail, i) {
 
@@ -1361,9 +1773,11 @@
 
         currentPhoto--;
 
+
         if (currentPhoto < 0) {
             currentPhoto = photos.length - 1;
         }
+
 
         changePhoto(currentPhoto);
 
@@ -1378,9 +1792,11 @@
 
         currentPhoto++;
 
+
         if (currentPhoto >= photos.length) {
             currentPhoto = 0;
         }
+
 
         changePhoto(currentPhoto);
 
@@ -1401,7 +1817,11 @@
 
             quantity--;
 
-            document.getElementById('quantity').value = quantity;
+            document.getElementById('quantity').value =
+                quantity;
+
+            document.getElementById('cartQuantity').value =
+                quantity;
 
         }
 
@@ -1412,11 +1832,16 @@
 
         const stock = {{ $product->stock }};
 
+
         if (quantity < stock) {
 
             quantity++;
 
-            document.getElementById('quantity').value = quantity;
+            document.getElementById('quantity').value =
+                quantity;
+
+            document.getElementById('cartQuantity').value =
+                quantity;
 
         }
 
