@@ -40,6 +40,7 @@ class CheckoutController extends Controller
         ));
     }
 
+
     /**
      * Menyimpan pesanan.
      */
@@ -127,7 +128,20 @@ class CheckoutController extends Controller
         $orderId = $request->session()->pull('order_success');
 
         return redirect()
-            ->route('orders.show', $orderId)
+            ->route('checkout.success', $orderId)
             ->with('success', 'Pesanan berhasil dibuat.');
+    }
+
+
+    /**
+     * Menampilkan halaman pesanan berhasil.
+     */
+    public function success($id)
+    {
+        $order = Order::with('orderDetails.product')
+            ->where('user_id', Auth::id())
+            ->findOrFail($id);
+
+        return view('checkout.success', compact('order'));
     }
 }

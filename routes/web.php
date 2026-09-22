@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+
 // =====================================================
 // PRODUK CUSTOMER
 // =====================================================
@@ -21,6 +22,7 @@ Route::get('/fresh-flower', [ProductController::class, 'index'])
 
 Route::get('/fresh-flower/{product}', [ProductController::class, 'show'])
     ->name('products.show');
+
 
 // =====================================================
 // KERANJANG
@@ -37,6 +39,7 @@ Route::patch('/keranjang/{product}', [CartController::class, 'update'])
 
 Route::delete('/keranjang/{product}', [CartController::class, 'remove'])
     ->name('cart.remove');
+
 
 // =====================================================
 // AUTHENTICATION
@@ -57,26 +60,41 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
+
 // =====================================================
 // CHECKOUT & PESANAN CUSTOMER
 // =====================================================
 
 Route::middleware('auth')->group(function () {
 
+    // -------------------------------------------------
     // Checkout / Melakukan Pemesanan
+    // -------------------------------------------------
+
     Route::get('/checkout', [CheckoutController::class, 'index'])
         ->name('checkout.index');
 
     Route::post('/checkout', [CheckoutController::class, 'store'])
         ->name('checkout.store');
 
+    // -------------------------------------------------
+    // Pesanan Berhasil
+    // -------------------------------------------------
+
+    Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])
+        ->name('checkout.success');
+
+    // -------------------------------------------------
     // Pesanan Saya
+    // -------------------------------------------------
+
     Route::get('/pesanan-saya', [OrderController::class, 'myOrders'])
         ->name('orders.my');
 
     Route::get('/pesanan-saya/{order}', [OrderController::class, 'show'])
         ->name('orders.show');
 });
+
 
 // =====================================================
 // ADMIN
@@ -91,6 +109,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
 
+
     // -------------------------------------------------
     // Profil Admin
     // -------------------------------------------------
@@ -100,6 +119,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/profile', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
+
 
     // -------------------------------------------------
     // Kelola Produk
@@ -128,6 +148,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Hapus produk
     Route::delete('/admin/produk/{product}', [ProductController::class, 'destroy'])
         ->name('admin.products.destroy');
+
 
     // -------------------------------------------------
     // KELOLA PESANAN
