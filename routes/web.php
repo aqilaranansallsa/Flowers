@@ -84,6 +84,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])
         ->name('checkout.success');
 
+    // Upload bukti transfer
+    Route::post('/checkout/success/{order}/upload-bukti-transfer', [OrderController::class, 'uploadBuktiTransfer'])
+        ->name('checkout.upload-bukti');
+
     // -------------------------------------------------
     // Pesanan Saya
     // -------------------------------------------------

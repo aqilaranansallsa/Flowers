@@ -1,1572 +1,1385 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Melakukan Pemesanan - Floréa</title>
-
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #fffaf0;
-            color: #333;
-        }
-
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            min-height: 90px;
-            padding: 10px 48px;
-            background: #fffdf7;
-            border-bottom: 1px solid #f2d6a2;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-
-        .brand img {
-            width: 62px;
-            height: 62px;
-            object-fit: contain;
-        }
-
-
-        .brand-text h1 {
-            margin: 0;
-            font-family: Georgia, serif;
-            font-size: 25px;
-            font-style: italic;
-            color: #d95f86;
-        }
-
-
-        .brand-text p {
-            margin: 4px 0 0;
-            font-size: 12px;
-            color: #77705f;
-        }
-
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #4d493f;
-            font-size: 14px;
-            padding: 10px 4px;
-            position: relative;
-            transition: 0.2s;
-        }
-
-
-        .nav-menu a:hover {
-            color: #d95f86;
-        }
-
-
-        .nav-menu a.active {
-            color: #d95f86;
-            border-bottom: 2px solid #e6b84f;
-        }
-
-
-        .auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: 10px;
-        }
-
-
-        .auth-buttons a {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-
-            text-decoration: none;
-            color: #333;
-
-            border: 1px solid #333;
-            padding: 5px 10px;
-
-            font-size: 12px;
-
-            background: #fffdf7;
-        }
-
-
-        .auth-buttons a:hover {
-            background: #f8e6eb;
-        }
-
-
-        .auth-icon {
-            width: 17px;
-            height: 17px;
-        }
-
-
-        .nav-icon {
-            width: 20px;
-            height: 20px;
-            stroke: #d95f86;
-            stroke-width: 1.8;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .logout-form {
-            display: inline;
-        }
-
-
-        .logout-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 18px;
-            border: 1px solid #e2b86d;
-            border-radius: 6px;
-            background: #fffdf7;
-            cursor: pointer;
-            font-size: 14px;
-            color: #4d493f;
-        }
-
-
-        .logout-button:hover {
-            background: #fff4d8;
-        }
-
-
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-
-            margin: 30px auto 60px;
-        }
-
-
-
-        /* =========================
-           ALERT
-        ========================= */
-
-        .alert {
-            padding: 13px 16px;
-
-            margin-bottom: 20px;
-
-            border-radius: 6px;
-
-            font-size: 13px;
-        }
-
-
-        .alert-error {
-            background: #fdeaea;
-
-            border: 1px solid #e4aaaa;
-
-            color: #a33a3a;
-        }
-
-
-
-        /* =========================
-           CHECKOUT FORM
-        ========================= */
-
-        .checkout-form {
-            width: 100%;
-        }
-
-
-        .checkout-card {
-            background: #fffdf7;
-
-            border: 1px solid #d8b95f;
-
-            border-radius: 8px;
-
-            padding: 25px 30px;
-
-            margin-bottom: 22px;
-
-            box-shadow: 0 3px 10px rgba(120, 90, 40, 0.06);
-        }
-
-
-
-        /* =========================
-           CARD TITLE
-        ========================= */
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 15px;
-            font-weight: bold;
-
-            text-transform: uppercase;
-
-            color: #222;
-
-            margin-bottom: 23px;
-
-            padding-bottom: 12px;
-
-            border-bottom: 1px solid #eadfc8;
-        }
-
-
-        .card-title-icon {
-            width: 25px;
-            height: 25px;
-
-            color: #d98da0;
-        }
-
-
-
-        /* =========================
-           FORM
-        ========================= */
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-
-        .form-group label {
-            display: block;
-
-            margin: 0 0 7px 3px;
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            color: #444;
-        }
-
-
-        .form-control {
-            width: 100%;
-
-            height: 43px;
-
-            border: 1px solid #d8b95f;
-
-            border-radius: 6px;
-
-            background: #fff;
-
-            padding: 10px 12px;
-
-            font-family: Arial, sans-serif;
-
-            font-size: 13px;
-
-            color: #333;
-
-            outline: none;
-
-            transition: 0.2s;
-        }
-
-
-        textarea.form-control {
-            height: 90px;
-
-            resize: vertical;
-
-            min-height: 65px;
-        }
-
-
-        .form-control:focus {
-            border-color: #d98da0;
-
-            box-shadow:
-                0 0 0 2px rgba(217, 141, 160, 0.10);
-        }
-
-
-        .form-row {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 25px;
-        }
-
-
-        .readonly-input {
-            background: #f9f5eb;
-
-            color: #777;
-
-            cursor: not-allowed;
-        }
-
-
-        .error {
-            margin: 6px 0 0 3px;
-
-            color: #c94b4b;
-
-            font-size: 12px;
-        }
-
-
-
-        /* =========================
-           RINGKASAN PESANAN
-        ========================= */
-
-        .order-items {
-            width: 100%;
-        }
-
-
-        .product-item {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding: 15px 5px;
-
-            border-bottom: 1px solid #eadfc8;
-        }
-
-
-        .product-item:last-child {
-            border-bottom: none;
-        }
-
-
-        .product-info {
-            flex: 1;
-
-            min-width: 0;
-        }
-
-
-        .product-info h3 {
-            font-size: 14px;
-
-            font-weight: bold;
-
-            color: #333;
-
-            margin-bottom: 6px;
-        }
-
-
-        .product-info p {
-            font-size: 13px;
-
-            color: #777;
-        }
-
-
-        .product-price {
-            font-size: 14px;
-
-            font-weight: bold;
-
-            color: #d98da0;
-
-            margin-left: 20px;
-
-            white-space: nowrap;
-        }
-
-
-        .empty-order {
-            padding: 15px 5px;
-
-            color: #777;
-
-            font-size: 13px;
-        }
-
-
-        .total {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-top: 5px;
-
-            padding: 18px 5px 5px;
-
-            border-top: 1px solid #eadfc8;
-
-            font-size: 16px;
-
-            font-weight: bold;
-        }
-
-
-        .total span:last-child {
-            color: #d98da0;
-
-            font-size: 18px;
-        }
-
-
-
-        /* =========================
-           METODE PEMBAYARAN
-        ========================= */
-
-        .payment-title {
-            font-size: 14px;
-
-            font-weight: 600;
-
-            margin: 23px 0 15px 5px;
-
-            color: #444;
-        }
-
-
-        .payment-options {
-            display: flex;
-
-            align-items: center;
-
-            gap: 35px;
-
-            padding-left: 5px;
-        }
-
-
-        .payment-option {
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            cursor: pointer;
-
-            font-size: 13px;
-
-            color: #444;
-        }
-
-
-        .payment-option input {
-            appearance: none;
-
-            width: 21px;
-            height: 21px;
-
-            border: 1px solid #c7a84f;
-
-            border-radius: 50%;
-
-            background: #fff;
-
-            cursor: pointer;
-
-            position: relative;
-        }
-
-
-        .payment-option input:checked {
-            border-color: #d98da0;
-        }
-
-
-        .payment-option input:checked::after {
-            content: "";
-
-            position: absolute;
-
-            width: 9px;
-            height: 9px;
-
-            background: #d98da0;
-
-            border-radius: 50%;
-
-            top: 5px;
-            left: 5px;
-        }
-
-
-        .bank-options {
-            display: none;
-
-            margin: 15px 0 0 5px;
-
-            padding: 15px 18px;
-
-            border: 1px solid #eadfc8;
-
-            border-radius: 6px;
-
-            background: #fffaf0;
-        }
-
-
-        .bank-options.show {
-            display: block;
-        }
-
-
-        .bank-title {
-            margin-bottom: 12px;
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            color: #444;
-        }
-
-
-        .bank-list {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 12px 25px;
-        }
-
-
-        .bank-option {
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            font-size: 13px;
-
-            color: #444;
-
-            cursor: pointer;
-        }
-
-
-        .bank-option input {
-            accent-color: #d98da0;
-
-            cursor: pointer;
-        }
-
-
-
-        /* =========================
-           BUTTON
-        ========================= */
-
-        .button-wrapper {
-            text-align: center;
-
-            margin-top: 30px;
-        }
-
-
-        .order-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 360px;
-            max-width: 100%;
-            height: 42px;
-            margin: 25px auto 0;
-            padding: 0;
-            border: 1px solid #d8b95f;
-            border-radius: 4px;
-            background: linear-gradient(
-                90deg,
-                #fff0c2,
-                #f8d9e2
-            );
-            color: #704354;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .order-button:hover {
-            background: linear-gradient(
-                90deg,
-                #f9df96,
-                #f2b7ca
-            );
-            border-color: #d95f86;
-        }
-
-
-        .back-link-wrapper {
-            text-align: center;
-
-            margin-top: 15px;
-        }
-
-
-        .back-link {
-            color: #c77f92;
-
-            text-decoration: none;
-
-            font-size: 13px;
-        }
-
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
-            background: linear-gradient(
-                135deg,
-                #f8d5df 0%,
-                #fff1d2 48%,
-                #f9dfc9 100%
-            );
-            border-top: 1px solid #e7c36f;
-            color: #5d554d;
-        }
-
-        .footer-content {
-            max-width: 1150px;
-            margin: auto;
-            padding: 45px 35px 30px;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
-            gap: 40px;
-        }
-
-        .footer-brand {
-            padding-right: 20px;
-        }
-
-        .footer-brand img {
-            width: 72px;
-            height: 72px;
-            object-fit: contain;
-            margin-bottom: 8px;
-        }
-
-        .footer-brand h3 {
-            margin: 0 0 8px;
-            font-family: Georgia, serif;
-            font-size: 25px;
-            font-style: italic;
-            color: #c9577b;
-        }
-
-        .footer-brand p {
-            margin: 0;
-            max-width: 300px;
-            font-size: 13px;
-            line-height: 1.7;
-            color: #756d64;
-        }
-
-        .footer-column h4 {
-            margin: 0 0 16px;
-            font-family: Georgia, serif;
-            font-size: 16px;
-            color: #9f526d;
-        }
-
-        .footer-column h4::after {
-            content: "";
-            display: block;
-            width: 28px;
-            height: 2px;
-            margin-top: 7px;
-            background: #d9ae4d;
-            border-radius: 5px;
-        }
-
-        .footer-column a {
-            display: block;
-            text-decoration: none;
-            color: #6d655c;
-            font-size: 13px;
-            margin-bottom: 10px;
-            transition: 0.2s;
-        }
-
-        .footer-column a:hover {
-            color: #d95f86;
-            padding-left: 4px;
-        }
-
-        .footer-column p {
-            font-size: 13px;
-            line-height: 1.7;
-            color: #6d655c;
-        }
-
-        .footer-service {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .service-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #6d655c;
-        }
-
-        .service-icon {
-            width: 20px;
-            height: 20px;
-            min-width: 20px;
-            stroke: #d95f86;
-            stroke-width: 1.7;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(183, 139, 64, 0.25);
-            padding: 17px 30px;
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            margin: 0;
-            font-size: 12px;
-            color: #7c7168;
-        }
-
-        .footer-bottom span {
-            color: #c9577b;
-            font-weight: bold;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .navbar {
-                padding: 10px 25px;
-            }
-
-
-            .brand {
-                min-width: auto;
-            }
-
-
-            .brand-text p {
-                display: none;
-            }
-
-
-            .nav-menu {
-                gap: 15px;
-            }
-
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-
-
-        @media (max-width: 700px) {
-
-            .navbar {
-                height: auto;
-
-                min-height: 90px;
-
-                flex-wrap: wrap;
-
-                gap: 10px;
-            }
-
-
-            .brand {
-                width: 100%;
-            }
-
-
-            .nav-menu {
-                width: 100%;
-
-                justify-content: center;
-
-                flex-wrap: wrap;
-            }
-
-
-            .auth-buttons {
-                width: 100%;
-
-                justify-content: center;
-
-                margin-left: 0;
-            }
-
-
-            .form-row {
-                grid-template-columns: 1fr;
-
-                gap: 0;
-            }
-
-
-            .checkout-card {
-                padding: 20px;
-            }
-
-
-            .payment-options {
-                gap: 25px;
-            }
-
-
-            .footer-content {
-                grid-template-columns: 1fr;
-
-                gap: 25px;
-            }
-
-        }
-
-
-
-        @media (max-width: 480px) {
-
-            .container {
-                width: 94%;
-            }
-
-
-            .page-title h2 {
-                font-size: 18px;
-            }
-
-
-            .checkout-card {
-                padding: 18px 15px;
-            }
-
-
-            .payment-options {
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                gap: 15px;
-            }
-
-
-            .product-item {
-                align-items: flex-start;
-
-                gap: 15px;
-            }
-
-
-            .product-price {
-                font-size: 13px;
-            }
-
-
-            .footer {
-                padding: 35px 25px 20px;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     NAVBAR
-========================= -->
-
-<nav class="navbar">
-
-    <div class="brand">
-        <img
-            src="{{ asset('images/logo-florea.png') }}"
-            alt="Floréa"
-        >
-
-        <div class="brand-text">
-            <h1>Floréa</h1>
-            <p>Fresh Flowers for Every Moment</p>
-        </div>
-    </div>
-
-    <div class="nav-menu">
-        <a href="{{ route('home') }}">Home</a>
-
-        <a href="{{ route('products.index') }}">Fresh Flower</a>
-
-        <a href="{{ route('cart.index') }}" class="active">Keranjang</a>
-
-        <a href="{{ route('orders.my') }}">Pesanan Saya</a>
-
-        @auth
-            <form action="{{ route('logout') }}" method="POST" class="logout-form">
-                @csrf
-                <button type="submit" class="logout-button">
-                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                        <path d="M16 17l5-5-5-5"></path>
-                        <path d="M21 12H9"></path>
-                    </svg>
-                    Logout
-                </button>
-            </form>
-        @endauth
-    </div>
-
-</nav>
-
-
-
-<!-- =========================
-     JUDUL
-========================= -->
-
-
-
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="container">
-
-
-    @if ($errors->any())
-
-        <div class="alert alert-error">
-
-            Periksa kembali data pemesanan yang kamu masukkan.
-
-        </div>
-
-    @endif
-
-
-
-    <form
-        action="{{ route('checkout.store') }}"
-        method="POST"
-        class="checkout-form"
-    >
-
-        @csrf
-
-
-
-        <!-- =========================
-             DATA PENERIMA
-        ========================= -->
-
-        <section class="checkout-card">
-
-            <div class="card-title">
-
-                <svg
-                    class="card-title-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                >
-
-                    <circle cx="12" cy="7" r="4"></circle>
-
-                    <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
-
-                </svg>
-
-                DATA PENERIMA
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="nama_penerima">
-                    Nama
-                </label>
-
-                <input
-                    type="text"
-                    id="nama_penerima"
-                    name="nama_penerima"
-                    class="form-control"
-                    value="{{ old('nama_penerima', auth()->user()->name) }}"
-                    required
-                >
-
-                @error('nama_penerima')
-
-                    <div class="error">
-                        {{ $message }}
-                    </div>
-
-                @enderror
-
-            </div>
-
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        class="form-control readonly-input"
-                        value="{{ auth()->user()->email }}"
-                        readonly
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="telp_penerima">
-                        No. Telepon
-                    </label>
-
-                    <input
-                        type="text"
-                        id="telp_penerima"
-                        name="telp_penerima"
-                        class="form-control"
-                        value="{{ old('telp_penerima', auth()->user()->telp) }}"
-                        placeholder="Masukkan nomor telepon"
-                        required
-                    >
-
-                    @error('telp_penerima')
-
-                        <div class="error">
-                            {{ $message }}
-                        </div>
-
-                    @enderror
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             DATA PENGIRIMAN
-        ========================= -->
-
-        <section class="checkout-card">
-
-            <div class="card-title">
-                DATA PENGIRIMAN
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="alamat_pengiriman">
-                    Alamat Pengiriman
-                </label>
-
-                <textarea
-                    id="alamat_pengiriman"
-                    name="alamat_pengiriman"
-                    class="form-control"
-                    placeholder="Masukkan alamat lengkap"
-                    required
-                >{{ old('alamat_pengiriman') }}</textarea>
-
-                @error('alamat_pengiriman')
-
-                    <div class="error">
-                        {{ $message }}
-                    </div>
-
-                @enderror
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="tanggal_pengiriman">
-                    Tanggal Pengiriman
-                </label>
-
-                <input
-                    type="date"
-                    id="tanggal_pengiriman"
-                    name="tanggal_pengiriman"
-                    class="form-control"
-                    value="{{ old('tanggal_pengiriman') }}"
-                    required
-                >
-
-                @error('tanggal_pengiriman')
-
-                    <div class="error">
-                        {{ $message }}
-                    </div>
-
-                @enderror
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="catatan">
-                    Catatan
-                </label>
-
-                <textarea
-                    id="catatan"
-                    name="catatan"
-                    class="form-control"
-                    placeholder="Tambahkan catatan untuk pesanan..."
-                >{{ old('catatan') }}</textarea>
-
-                @error('catatan')
-
-                    <div class="error">
-                        {{ $message }}
-                    </div>
-
-                @enderror
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             RINGKASAN PESANAN
-        ========================= -->
-
-        <section class="checkout-card">
-
-            <div class="card-title">
-                RINGKASAN PESANAN
-            </div>
-
-
-            <div class="order-items">
-
-                @foreach ($products as $product)
-
-                    @php
-
-                        $qty = $cart[$product->id];
-
-                        $subtotal = $product->price * $qty;
-
-                    @endphp
-
-
-                    <div class="product-item">
-
-                        <div class="product-info">
-
-                            <h3>
-                                {{ $product->name }}
-                            </h3>
-
-                            <p>
-
-                                {{ $qty }} ×
-
-                                Rp
-                                {{ number_format($product->price, 0, ',', '.') }}
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="product-price">
-
-                            Rp
-                            {{ number_format($subtotal, 0, ',', '.') }}
-
-                        </div>
-
-                    </div>
-
-                @endforeach
-
-            </div>
-
-
-
-            <div class="total">
-
-                <span>
-                    Total
-                </span>
-
-                <span>
-                    Rp {{ number_format($total, 0, ',', '.') }}
-                </span>
-
-            </div>
-
-
-
-            <!-- =========================
-                 METODE PEMBAYARAN
-            ========================= -->
-
-            <div class="payment-title">
-                Pilih metode pembayaran
-            </div>
-
-
-            <div class="payment-options">
-
-                <label class="payment-option">
-
-                    <input
-                        type="radio"
-                        name="metode_pembayaran"
-                        value="Transfer Bank"
-                        {{ old('metode_pembayaran') == 'Transfer Bank' ? 'checked' : '' }}
-                        required
-                        onchange="toggleBankOptions()"
-                    >
-
-                    <span>
-                        Transfer
-                    </span>
-
-                </label>
-
-
-                <label class="payment-option">
-
-                    <input
-                        type="radio"
-                        name="metode_pembayaran"
-                        value="COD"
-                        {{ old('metode_pembayaran') == 'COD' ? 'checked' : '' }}
-                        onchange="toggleBankOptions()"
-                    >
-
-                    <span>
-                        COD
-                    </span>
-
-                </label>
-
-            </div>
-
-
-            <div
-                id="bank-options"
-                class="bank-options {{ old('metode_pembayaran') == 'Transfer Bank' ? 'show' : '' }}"
-            >
-
-                <div class="bank-title">
-                    Pilih bank untuk transfer
-                </div>
-
-                <div class="bank-list">
-
-                    <label class="bank-option">
-                        <input
-                            type="radio"
-                            name="bank_transfer"
-                            value="BCA"
-                            {{ old('bank_transfer') == 'BCA' ? 'checked' : '' }}
-                        >
-                        <span>BCA</span>
-                    </label>
-
-                    <label class="bank-option">
-                        <input
-                            type="radio"
-                            name="bank_transfer"
-                            value="BRI"
-                            {{ old('bank_transfer') == 'BRI' ? 'checked' : '' }}
-                        >
-                        <span>BRI</span>
-                    </label>
-
-                    <label class="bank-option">
-                        <input
-                            type="radio"
-                            name="bank_transfer"
-                            value="Mandiri"
-                            {{ old('bank_transfer') == 'Mandiri' ? 'checked' : '' }}
-                        >
-                        <span>Mandiri</span>
-                    </label>
-
-                </div>
-
-                @error('bank_transfer')
-                    <div class="error">
-                        {{ $message }}
-                    </div>
-                @enderror
-
-            </div>
-
-
-            @error('metode_pembayaran')
-
-                <div class="error">
-                    {{ $message }}
-                </div>
-
-            @enderror
-
-        </section>
-
-
-
-        <!-- =========================
-             BUTTON
-        ========================= -->
-
-        <div class="button-wrapper">
-
-            <button
-                type="submit"
-                class="order-button"
-            >
-                LANJUT KE PEMBAYARAN
-            </button>
-
-        </div>
-
-
-        <div class="back-link-wrapper">
-
-            <a
-                href="{{ route('cart.index') }}"
-                class="back-link"
-            >
-                ← Kembali ke Keranjang
-            </a>
-
-        </div>
-
-
-    </form>
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="footer">
-
-    <div class="footer-content">
-
-        <div class="footer-brand">
-            <img
-                src="{{ asset('images/logo-florea.png') }}"
-                alt="Logo Floréa"
-            >
-
-            <h3>Floréa</h3>
-
-            <p>
-                Fresh flowers untuk menghadirkan keindahan dan
-                kebahagiaan di setiap momen spesial Anda.
-            </p>
-        </div>
-
-        <div class="footer-column">
-            <h4>Navigasi</h4>
-
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('products.index') }}">Fresh Flower</a>
-            <a href="{{ route('cart.index') }}">Keranjang</a>
-            <a href="{{ route('orders.my') }}">Pesanan Saya</a>
-        </div>
-
-        <div class="footer-column">
-            <h4>Layanan</h4>
-
-            <a href="{{ route('products.index') }}">Bunga Segar</a>
-            <a href="{{ route('products.index') }}">Pengiriman Cepat</a>
-            <a href="{{ route('products.index') }}">Pembayaran Aman</a>
-            <a href="{{ route('products.index') }}">Layanan 24/7</a>
-        </div>
-
-        <div class="footer-column">
-            <h4>Tentang Floréa</h4>
-
-            <div class="footer-service">
-                <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24">
-                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"></path>
-                        <circle cx="12" cy="10" r="2.5"></circle>
-                    </svg>
-                    <span>Fresh Flower untuk berbagai<br>momen istimewa.</span>
-                </div>
-
-                <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <path d="M12 7v5l3 2"></path>
-                    </svg>
-                    <span>Melayani kebutuhan bunga<br>dengan sepenuh hati.</span>
-                </div>
-
-                <div class="service-item">
-                    <svg class="service-icon" viewBox="0 0 24 24">
-                        <path d="M20 11a8.1 8.1 0 0 0-15.5-2"></path>
-                        <path d="M4 5v4h4"></path>
-                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2"></path>
-                        <path d="M20 19v-4h-4"></path>
-                    </svg>
-                    <span>Pesanan diproses dengan aman<br>dan terpercaya.</span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>
-            © {{ date('Y') }} <span>Floréa</span>. All Rights Reserved.
-        </p>
-    </div>
-
-</footer>
-
-
-<script>
-
-    function toggleBankOptions() {
-
-        const transfer = document.querySelector(
-            'input[name="metode_pembayaran"][value="Transfer Bank"]'
-        );
-
-        const bankOptions = document.getElementById('bank-options');
-        const bankInputs = document.querySelectorAll(
-            'input[name="bank_transfer"]'
-        );
-
-        if (transfer && transfer.checked) {
-            bankOptions.classList.add('show');
-
-            bankInputs.forEach(input => {
-                input.required = true;
-                input.disabled = false;
-            });
-        } else {
-            bankOptions.classList.remove('show');
-
-            bankInputs.forEach(input => {
-                input.required = false;
-                input.disabled = true;
-                input.checked = false;
-            });
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', toggleBankOptions);
-
-</script>
-
-</body>
-
+<!DOCTYPE html> 
+<html lang="id"> 
+ 
+<head> 
+ 
+    <meta charset="UTF-8"> 
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+    <title>Detail Pesanan - Floréa</title> 
+ 
+ 
+    <style> 
+ 
+        * { 
+            box-sizing: border-box; 
+        } 
+ 
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #fffaf0; 
+            color: #333; 
+        } 
+ 
+ 
+        /* ========================= 
+           NAVBAR 
+        ========================= */ 
+ 
+        .navbar { 
+            min-height: 90px; 
+            padding: 10px 45px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background-color: #fffdf7; 
+            border-bottom: 1px solid #f2d6a2; 
+        } 
+ 
+        .brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        } 
+ 
+        .logo-image { 
+            width: 62px; 
+            height: 62px; 
+            object-fit: contain; 
+        } 
+ 
+        .brand-text h2 { 
+            margin: 0; 
+            font-family: Georgia, serif; 
+            font-style: italic; 
+            font-size: 25px; 
+            color: #d95f86; 
+        } 
+ 
+        .brand-text p { 
+            margin: 4px 0 0; 
+            font-size: 12px; 
+            color: #77705f; 
+        } 
+ 
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 28px; 
+        } 
+ 
+        .nav-menu a { 
+            text-decoration: none; 
+            color: #4d493f; 
+            font-size: 14px; 
+            padding: 10px 4px; 
+            transition: 0.2s; 
+        } 
+ 
+        .nav-menu a:hover { 
+            color: #d95f86; 
+        } 
+ 
+        .nav-menu .active { 
+            color: #d95f86; 
+            border-bottom: 2px solid #e6b84f; 
+        } 
+ 
+        .nav-button { 
+            display: flex !important; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            padding: 9px 18px !important; 
+            border: 1px solid #e2b86d; 
+            border-radius: 6px; 
+            color: #4d493f !important; 
+            background-color: #fffdf7; 
+        } 
+ 
+        .nav-button:hover { 
+            background-color: #fff4d8; 
+        } 
+ 
+        .register-button { 
+            background-color: #f8d6df !important; 
+            border-color: #e7a3b6 !important; 
+        } 
+ 
+        .register-button:hover { 
+            background-color: #f4bdce !important; 
+        } 
+ 
+        .nav-icon { 
+            width: 20px; 
+            height: 20px; 
+            stroke: #d95f86; 
+            stroke-width: 1.8; 
+            fill: none; 
+            stroke-linecap: round; 
+            stroke-linejoin: round; 
+        } 
+ 
+        .logout-form { 
+            display: inline; 
+        } 
+ 
+        .logout-button { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 9px 18px; 
+            border: 1px solid #e2b86d; 
+            border-radius: 6px; 
+            background-color: #fffdf7; 
+            cursor: pointer; 
+            font-size: 14px; 
+            color: #4d493f; 
+        } 
+ 
+        .logout-button:hover { 
+            background-color: #fff4d8; 
+        } 
+ 
+ 
+        /* ========================= 
+           CONTENT 
+        ========================= */ 
+ 
+        .container { 
+            max-width: 1000px; 
+            margin: auto; 
+            padding: 40px 25px 50px; 
+        } 
+ 
+        .detail-card { 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background-color: #fffdf8; 
+            border: 1px solid #e2cb98; 
+            border-radius: 7px; 
+            box-shadow: 0 3px 10px rgba(217, 145, 104, 0.07); 
+            overflow: hidden; 
+        } 
+ 
+ 
+        /* ========================= 
+           DETAIL HEADER 
+        ========================= */ 
+ 
+        .detail-header { 
+            padding: 15px 18px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 20px; 
+            background-color: #fffdf7; 
+            border-bottom: 1px solid #ead9b4; 
+        } 
+ 
+        .invoice-label { 
+            margin-bottom: 5px; 
+            font-size: 11px; 
+            color: #8b8175; 
+        } 
+ 
+        .invoice { 
+            font-size: 15px; 
+            font-weight: bold; 
+            color: #4d493f; 
+        } 
+ 
+        .status-wrapper { 
+            display: flex; 
+            gap: 7px; 
+            flex-wrap: wrap; 
+            justify-content: flex-end; 
+        } 
+ 
+        .status { 
+            padding: 6px 10px; 
+            border-radius: 20px; 
+            font-size: 10px; 
+            font-weight: bold; 
+        } 
+ 
+        .status-order { 
+            background-color: #fce2e9; 
+            color: #b94f70; 
+            border: 1px solid #e7b5c4; 
+        } 
+ 
+        .status-payment { 
+            background-color: #fff1c9; 
+            color: #98752e; 
+            border: 1px solid #e5c879; 
+        } 
+ 
+ 
+        /* ========================= 
+           DETAIL BODY 
+        ========================= */ 
+ 
+        .detail-body { 
+            padding: 20px; 
+        } 
+ 
+        .section { 
+            margin-bottom: 22px; 
+        } 
+ 
+        .section:last-child { 
+            margin-bottom: 0; 
+        } 
+ 
+        .section-title { 
+            margin: 0 0 12px; 
+            padding-bottom: 8px; 
+            border-bottom: 1px solid #ead9b4; 
+            font-family: Georgia, serif; 
+            font-size: 16px; 
+            font-style: italic; 
+            color: #c9577b; 
+        } 
+ 
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 13px 28px; 
+        } 
+ 
+        .info-item { 
+            font-size: 12px; 
+            line-height: 1.5; 
+            color: #6d685d; 
+        } 
+ 
+        .info-item strong { 
+            display: block; 
+            margin-bottom: 3px; 
+            font-size: 10px; 
+            color: #4d493f; 
+        } 
+ 
+        .address { 
+            line-height: 1.6; 
+        } 
+ 
+ 
+        /* ========================= 
+           PRODUCT 
+        ========================= */ 
+ 
+        .product-list { 
+            border: 1px solid #ead9b4; 
+            border-radius: 6px; 
+            overflow: hidden; 
+        } 
+ 
+        .product-item { 
+            padding: 12px 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 20px; 
+            border-bottom: 1px solid #ead9b4; 
+            background-color: #fffdf8; 
+        } 
+ 
+        .product-item:last-child { 
+            border-bottom: none; 
+        } 
+ 
+        .product-name { 
+            font-size: 12px; 
+            font-weight: bold; 
+            color: #4d493f; 
+        } 
+ 
+        .product-detail { 
+            margin-top: 4px; 
+            font-size: 10px; 
+            color: #8a8173; 
+        } 
+ 
+        .product-subtotal { 
+            font-size: 12px; 
+            font-weight: bold; 
+            color: #6d5c45; 
+            white-space: nowrap; 
+        } 
+ 
+ 
+        /* ========================= 
+           TOTAL 
+        ========================= */ 
+ 
+        .total-box { 
+            padding: 14px 17px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            background: linear-gradient( 
+                90deg, 
+                #fff8df, 
+                #fff1f4 
+            ); 
+            border: 1px solid #e4cd91; 
+            border-radius: 6px; 
+        } 
+ 
+        .total-label { 
+            font-size: 12px; 
+            font-weight: bold; 
+            color: #6d685d; 
+        } 
+ 
+        .total-price { 
+            font-size: 17px; 
+            font-weight: bold; 
+            color: #d95f86; 
+        } 
+ 
+ 
+        /* ========================= 
+           PAYMENT 
+        ========================= */ 
+ 
+        .payment-box { 
+            padding: 14px 16px; 
+            background-color: #fffaf0; 
+            border: 1px solid #ead9b4; 
+            border-radius: 6px; 
+        } 
+ 
+        .payment-row { 
+            display: flex; 
+            justify-content: space-between; 
+            gap: 20px; 
+            padding: 6px 0; 
+            font-size: 12px; 
+            color: #6d685d; 
+        } 
+ 
+        .payment-row strong { 
+            color: #4d493f; 
+        } 
+ 
+ 
+        /* ========================= 
+           BUKTI TRANSFER 
+        ========================= */ 
+ 
+        .proof-box { 
+            padding: 15px; 
+            background-color: #fffaf0; 
+            border: 1px solid #ead9b4; 
+            border-radius: 6px; 
+            text-align: center; 
+        } 
+ 
+        .proof-box p { 
+            margin: 0 0 12px; 
+            font-size: 11px; 
+            color: #77705f; 
+        } 
+ 
+        .proof-image { 
+            display: block; 
+            max-width: 400px; 
+            max-height: 400px; 
+            width: auto; 
+            height: auto; 
+            margin: auto; 
+            border: 1px solid #dfc78f; 
+            border-radius: 6px; 
+        } 
+ 
+        .no-proof { 
+            margin: 0; 
+            padding: 10px; 
+            background-color: #fff3d5; 
+            border: 1px solid #e7cf91; 
+            border-radius: 5px; 
+            color: #8a7239; 
+            font-size: 11px; 
+        } 
+ 
+ 
+        /* ========================= 
+           BUTTON 
+        ========================= */ 
+ 
+        .action { 
+            display: flex; 
+            justify-content: flex-end; 
+            margin-top: 22px; 
+        } 
+ 
+        .back-button { 
+            display: inline-block; 
+            padding: 8px 14px; 
+            text-decoration: none; 
+            color: #704354; 
+            background-color: #fffdf7; 
+            border: 1px solid #d8b95f; 
+            border-radius: 4px; 
+            font-size: 10px; 
+            font-weight: bold; 
+            transition: 0.2s; 
+        } 
+ 
+        .back-button:hover { 
+            background-color: #fff0c2; 
+        } 
+ 
+ 
+        /* ========================= 
+           FOOTER 
+        ========================= */ 
+ 
+        .footer { 
+            background: linear-gradient( 
+                135deg, 
+                #f8d5df 0%, 
+                #fff1d2 48%, 
+                #f9dfc9 100% 
+            ); 
+            border-top: 1px solid #e7c36f; 
+            color: #5d554d; 
+        } 
+ 
+        .footer-container { 
+            max-width: 1150px; 
+            margin: auto; 
+            padding: 45px 35px 30px; 
+            display: grid; 
+            grid-template-columns: 1.5fr 1fr 1fr 1.1fr; 
+            gap: 40px; 
+        } 
+ 
+        .footer-brand { 
+            padding-right: 20px; 
+        } 
+ 
+        .footer-logo { 
+            width: 72px; 
+            height: 72px; 
+            object-fit: contain; 
+            margin-bottom: 8px; 
+        } 
+ 
+        .footer-brand h2 { 
+            margin: 0 0 8px; 
+            font-family: Georgia, serif; 
+            font-size: 25px; 
+            font-style: italic; 
+            color: #c9577b; 
+        } 
+ 
+        .footer-brand p { 
+            margin: 0; 
+            max-width: 300px; 
+            font-size: 13px; 
+            line-height: 1.7; 
+            color: #756d64; 
+        } 
+ 
+        .footer-column h3 { 
+            margin: 0 0 16px; 
+            font-family: Georgia, serif; 
+            font-size: 16px; 
+            color: #9f526d; 
+        } 
+ 
+        .footer-column h3::after { 
+            content: ""; 
+            display: block; 
+            width: 28px; 
+            height: 2px; 
+            margin-top: 7px; 
+            background: #d9ae4d; 
+            border-radius: 5px; 
+        } 
+ 
+        .footer-links { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        } 
+ 
+        .footer-links a { 
+            text-decoration: none; 
+            color: #6d655c; 
+            font-size: 13px; 
+            transition: 0.2s; 
+        } 
+ 
+        .footer-links a:hover { 
+            color: #d95f86; 
+            padding-left: 4px; 
+        } 
+ 
+        .footer-service { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        } 
+ 
+        .service-item { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 10px; 
+            font-size: 13px; 
+            line-height: 1.5; 
+            color: #6d655c; 
+        } 
+ 
+        .service-icon { 
+            width: 20px; 
+            height: 20px; 
+            min-width: 20px; 
+            stroke: #d95f86; 
+            stroke-width: 1.7; 
+            fill: none; 
+            stroke-linecap: round; 
+            stroke-linejoin: round; 
+        } 
+ 
+        .footer-bottom { 
+            border-top: 1px solid rgba(183, 139, 64, 0.25); 
+            padding: 17px 30px; 
+            text-align: center; 
+        } 
+ 
+        .footer-bottom p { 
+            margin: 0; 
+            font-size: 12px; 
+            color: #7c7168; 
+        } 
+ 
+        .footer-bottom span { 
+            color: #c9577b; 
+            font-weight: bold; 
+        } 
+ 
+ 
+        /* ========================= 
+           RESPONSIVE 
+        ========================= */ 
+ 
+        @media (max-width: 1050px) { 
+ 
+            .navbar { 
+                padding: 10px 25px; 
+            } 
+ 
+            .nav-menu { 
+                gap: 15px; 
+            } 
+ 
+            .footer-container { 
+                grid-template-columns: repeat(2, 1fr); 
+            } 
+ 
+        } 
+ 
+ 
+        @media (max-width: 750px) { 
+ 
+            .navbar { 
+                height: auto; 
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 15px; 
+            } 
+ 
+            .nav-menu { 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 12px; 
+            } 
+ 
+            .container { 
+                padding: 30px 18px 45px; 
+            } 
+ 
+            .detail-header { 
+                align-items: flex-start; 
+                flex-direction: column; 
+            } 
+ 
+            .status-wrapper { 
+                justify-content: flex-start; 
+            } 
+ 
+            .info-grid { 
+                grid-template-columns: 1fr; 
+            } 
+ 
+            .footer-container { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+                padding: 35px 25px 25px; 
+            } 
+ 
+            .footer-brand { 
+                padding-right: 0; 
+            } 
+ 
+        } 
+ 
+ 
+        @media (max-width: 500px) { 
+ 
+            .product-item { 
+                align-items: flex-start; 
+                flex-direction: column; 
+                gap: 6px; 
+            } 
+ 
+            .product-subtotal { 
+                align-self: flex-end; 
+            } 
+ 
+            .payment-row { 
+                flex-direction: column; 
+                gap: 3px; 
+            } 
+ 
+            .total-box { 
+                gap: 15px; 
+            } 
+ 
+            .proof-image { 
+                max-width: 100%; 
+            } 
+ 
+        } 
+ 
+    </style> 
+ 
+</head> 
+ 
+ 
+<body> 
+ 
+ 
+<!-- ========================= 
+     NAVBAR 
+========================= --> 
+ 
+<nav class="navbar"> 
+ 
+    <div class="brand"> 
+ 
+        <img 
+            src="{{ asset('images/logo-florea.png') }}" 
+            alt="Floréa" 
+            class="logo-image" 
+        > 
+ 
+        <div class="brand-text"> 
+ 
+            <h2> 
+                Floréa 
+            </h2> 
+ 
+            <p> 
+                Fresh Flowers for Every Moment 
+            </p> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="nav-menu"> 
+ 
+        <a href="{{ route('home') }}"> 
+            Home 
+        </a> 
+ 
+        <a href="{{ route('products.index') }}"> 
+            Fresh Flower 
+        </a> 
+ 
+        <a href="{{ route('cart.index') }}"> 
+            Keranjang 
+        </a> 
+ 
+        <a 
+            href="{{ route('orders.my') }}" 
+            class="active" 
+        > 
+            Pesanan Saya 
+        </a> 
+ 
+ 
+        @guest 
+ 
+            <a 
+                href="{{ route('login') }}" 
+                class="nav-button" 
+            > 
+ 
+                <svg 
+                    class="nav-icon" 
+                    viewBox="0 0 24 24" 
+                > 
+ 
+                    <circle 
+                        cx="12" 
+                        cy="8" 
+                        r="4" 
+                    /> 
+ 
+                    <path 
+                        d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" 
+                    /> 
+ 
+                </svg> 
+ 
+                Login 
+ 
+            </a> 
+ 
+ 
+            <a 
+                href="{{ route('register') }}" 
+                class="nav-button register-button" 
+            > 
+ 
+                <svg 
+                    class="nav-icon" 
+                    viewBox="0 0 24 24" 
+                > 
+ 
+                    <circle 
+                        cx="9" 
+                        cy="8" 
+                        r="4" 
+                    /> 
+ 
+                    <path 
+                        d="M2 21c0-4.2 3.1-7 7-7" 
+                    /> 
+ 
+                    <path 
+                        d="M18 13v8" 
+                    /> 
+ 
+                    <path 
+                        d="M14 17h8" 
+                    /> 
+ 
+                </svg> 
+ 
+                Register 
+ 
+            </a> 
+ 
+        @else 
+ 
+            <form 
+                action="{{ route('logout') }}" 
+                method="POST" 
+                class="logout-form" 
+            > 
+ 
+                @csrf 
+ 
+                <button 
+                    type="submit" 
+                    class="logout-button" 
+                > 
+ 
+                    <svg 
+                        class="nav-icon" 
+                        viewBox="0 0 24 24" 
+                    > 
+ 
+                        <path 
+                            d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" 
+                        /> 
+ 
+                        <path 
+                            d="M16 17l5-5-5-5" 
+                        /> 
+ 
+                        <path 
+                            d="M21 12H9" 
+                        /> 
+ 
+                    </svg> 
+ 
+                    Logout 
+ 
+                </button> 
+ 
+            </form> 
+ 
+        @endguest 
+ 
+    </div> 
+ 
+</nav> 
+ 
+ 
+<!-- ========================= 
+     CONTENT 
+========================= --> 
+ 
+<div class="container"> 
+ 
+ 
+    <div class="detail-card"> 
+ 
+ 
+        <!-- HEADER --> 
+ 
+        <div class="detail-header"> 
+ 
+            <div> 
+ 
+                <div class="invoice-label"> 
+                    NOMOR PESANAN 
+                </div> 
+ 
+                <div class="invoice"> 
+                    {{ $order->invoice }} 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <div class="status-wrapper"> 
+ 
+                <span class="status status-order"> 
+ 
+                    Pesanan: 
+                    {{ ucfirst($order->status) }} 
+ 
+                </span> 
+ 
+                <span class="status status-payment"> 
+ 
+                    Pembayaran: 
+                    {{ ucfirst($order->status_pembayaran) }} 
+ 
+                </span> 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <div class="detail-body"> 
+ 
+ 
+            <!-- INFORMASI PESANAN --> 
+ 
+            <div class="section"> 
+ 
+                <h2 class="section-title"> 
+                    Informasi Pesanan 
+                </h2> 
+ 
+ 
+                <div class="info-grid"> 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Tanggal Pesanan 
+                        </strong> 
+ 
+                        {{ $order->created_at->format('d-m-Y H:i') }} 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Tanggal Pengiriman 
+                        </strong> 
+ 
+                        {{ \Carbon\Carbon::parse($order->tanggal_pengiriman)->format('d-m-Y') }} 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Metode Pembayaran 
+                        </strong> 
+ 
+                        {{ ucfirst($order->metode_pembayaran) }} 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Status Pembayaran 
+                        </strong> 
+ 
+                        {{ ucfirst($order->status_pembayaran) }} 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- INFORMASI PENERIMA --> 
+ 
+            <div class="section"> 
+ 
+                <h2 class="section-title"> 
+                    Informasi Penerima 
+                </h2> 
+ 
+ 
+                <div class="info-grid"> 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Nama Penerima 
+                        </strong> 
+ 
+                        {{ $order->nama_penerima }} 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Nomor HP 
+                        </strong> 
+ 
+                        {{ $order->telp_penerima }} 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Alamat Pengiriman 
+                        </strong> 
+ 
+                        <span class="address"> 
+                            {{ $order->alamat_pengiriman }} 
+                        </span> 
+ 
+                    </div> 
+ 
+ 
+                    <div class="info-item"> 
+ 
+                        <strong> 
+                            Catatan 
+                        </strong> 
+ 
+                        {{ $order->catatan ?: '-' }} 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- PRODUK --> 
+ 
+            <div class="section"> 
+ 
+                <h2 class="section-title"> 
+                    Produk yang Dipesan 
+                </h2> 
+ 
+ 
+                <div class="product-list"> 
+ 
+                    @foreach($order->orderDetails as $detail) 
+ 
+                        <div class="product-item"> 
+ 
+                            <div> 
+ 
+                                <div class="product-name"> 
+ 
+                                    {{ $detail->product->name }} 
+ 
+                                </div> 
+ 
+                                <div class="product-detail"> 
+ 
+                                    {{ $detail->qty }} 
+                                    × 
+                                    Rp {{ number_format($detail->price, 0, ',', '.') }} 
+ 
+                                </div> 
+ 
+                            </div> 
+ 
+ 
+                            <div class="product-subtotal"> 
+ 
+                                Rp 
+                                {{ number_format($detail->subtotal, 0, ',', '.') }} 
+ 
+                            </div> 
+ 
+                        </div> 
+ 
+                    @endforeach 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- TOTAL --> 
+ 
+            <div class="section"> 
+ 
+                <div class="total-box"> 
+ 
+                    <span class="total-label"> 
+                        Total Pembayaran 
+                    </span> 
+ 
+                    <span class="total-price"> 
+ 
+                        Rp 
+                        {{ number_format($order->total, 0, ',', '.') }} 
+ 
+                    </span> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- PEMBAYARAN --> 
+ 
+            <div class="section"> 
+ 
+                <h2 class="section-title"> 
+                    Informasi Pembayaran 
+                </h2> 
+ 
+ 
+                <div class="payment-box"> 
+ 
+                    <div class="payment-row"> 
+ 
+                        <strong> 
+                            Metode Pembayaran 
+                        </strong> 
+ 
+                        <span> 
+                            {{ ucfirst($order->metode_pembayaran) }} 
+                        </span> 
+ 
+                    </div> 
+ 
+ 
+                    <div class="payment-row"> 
+ 
+                        <strong> 
+                            Status Pembayaran 
+                        </strong> 
+ 
+                        <span> 
+                            {{ ucfirst($order->status_pembayaran) }} 
+                        </span> 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+            </div> 
+ 
+ 
+            <!-- BUKTI TRANSFER --> 
+ 
+            @if(strtolower($order->metode_pembayaran) === 'transfer bank') 
+ 
+                <div class="section"> 
+ 
+                    <h2 class="section-title"> 
+                        Bukti Transfer 
+                    </h2> 
+ 
+ 
+                    <div class="proof-box"> 
+ 
+                        @if($order->bukti_transfer) 
+ 
+                            <p> 
+                                Bukti transfer yang telah Anda upload: 
+                            </p> 
+ 
+                            <img 
+                                src="{{ asset('storage/' . $order->bukti_transfer) }}" 
+                                alt="Bukti Transfer" 
+                                class="proof-image" 
+                            > 
+ 
+                        @else 
+ 
+                            <p class="no-proof"> 
+                                Bukti transfer belum diupload. 
+                            </p> 
+ 
+                        @endif 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+            @endif 
+ 
+ 
+            <!-- BUTTON --> 
+ 
+            <div class="action"> 
+ 
+                <a 
+                    href="{{ route('orders.my') }}" 
+                    class="back-button" 
+                > 
+                    KEMBALI KE PESANAN SAYA 
+                </a> 
+ 
+            </div> 
+ 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<!-- ========================= 
+     FOOTER 
+========================= --> 
+ 
+<footer class="footer"> 
+ 
+    <div class="footer-container"> 
+ 
+ 
+        <div class="footer-brand"> 
+ 
+            <img 
+                src="{{ asset('images/logo-florea.png') }}" 
+                alt="Floréa" 
+                class="footer-logo" 
+            > 
+ 
+            <h2> 
+                Floréa 
+            </h2> 
+ 
+            <p> 
+                Fresh flowers untuk menghadirkan keindahan 
+                dan kebahagiaan di setiap momen spesial Anda. 
+            </p> 
+ 
+        </div> 
+ 
+ 
+        <div class="footer-column"> 
+ 
+            <h3> 
+                Navigasi 
+            </h3> 
+ 
+            <div class="footer-links"> 
+ 
+                <a href="{{ route('home') }}"> 
+                    Home 
+                </a> 
+ 
+                <a href="{{ route('products.index') }}"> 
+                    Fresh Flower 
+                </a> 
+ 
+                <a href="{{ route('cart.index') }}"> 
+                    Keranjang 
+                </a> 
+ 
+                <a href="{{ route('orders.my') }}"> 
+                    Pesanan Saya 
+                </a> 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <div class="footer-column"> 
+ 
+            <h3> 
+                Layanan 
+            </h3> 
+ 
+            <div class="footer-links"> 
+ 
+                <a href="{{ route('products.index') }}"> 
+                    Bunga Segar 
+                </a> 
+ 
+                <a href="{{ route('products.index') }}"> 
+                    Pengiriman Cepat 
+                </a> 
+ 
+                <a href="{{ route('products.index') }}"> 
+                    Pembayaran Aman 
+                </a> 
+ 
+                <a href="{{ route('products.index') }}"> 
+                    Layanan 24/7 
+                </a> 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+        <div class="footer-column"> 
+ 
+            <h3> 
+                Tentang Floréa 
+            </h3> 
+ 
+ 
+            <div class="footer-service"> 
+ 
+ 
+                <div class="service-item"> 
+ 
+                    <svg 
+                        class="service-icon" 
+                        viewBox="0 0 24 24" 
+                    > 
+ 
+                        <path 
+                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z" 
+                        /> 
+ 
+                        <circle 
+                            cx="12" 
+                            cy="10" 
+                            r="2.5" 
+                        /> 
+ 
+                    </svg> 
+ 
+                    <span> 
+                        Fresh Flower untuk berbagai 
+                        momen istimewa. 
+                    </span> 
+ 
+                </div> 
+ 
+ 
+                <div class="service-item"> 
+ 
+                    <svg 
+                        class="service-icon" 
+                        viewBox="0 0 24 24" 
+                    > 
+ 
+                        <circle 
+                            cx="12" 
+                            cy="12" 
+                            r="9" 
+                        /> 
+ 
+                        <path 
+                            d="M12 7v5l3 2" 
+                        /> 
+ 
+                    </svg> 
+ 
+                    <span> 
+                        Melayani kebutuhan bunga 
+                        dengan sepenuh hati. 
+                    </span> 
+ 
+                </div> 
+ 
+ 
+                <div class="service-item"> 
+ 
+                    <svg 
+                        class="service-icon" 
+                        viewBox="0 0 24 24" 
+                    > 
+ 
+                        <path 
+                            d="M20 11a8.1 8.1 0 0 0-15.5-2" 
+                        /> 
+ 
+                        <path 
+                            d="M4 5v4h4" 
+                        /> 
+ 
+                        <path 
+                            d="M4 13a8.1 8.1 0 0 0 15.5 2" 
+                        /> 
+ 
+                        <path 
+                            d="M20 19v-4h-4" 
+                        /> 
+ 
+                    </svg> 
+ 
+                    <span> 
+                        Pesanan diproses dengan 
+                        aman dan terpercaya. 
+                    </span> 
+ 
+                </div> 
+ 
+ 
+            </div> 
+ 
+        </div> 
+ 
+ 
+    </div> 
+ 
+ 
+    <div class="footer-bottom"> 
+ 
+        <p> 
+ 
+            © {{ date('Y') }} <span>Floréa</span>. 
+            All Rights Reserved. 
+ 
+        </p> 
+ 
+    </div> 
+ 
+</footer> 
+ 
+ 
+</body> 
+ 
 </html>

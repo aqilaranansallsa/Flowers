@@ -296,7 +296,7 @@
         .payment-box {
             margin-top: 18px;
 
-            padding: 15px 18px;
+            padding: 18px;
 
             border: 1px solid #eadfc8;
 
@@ -309,7 +309,7 @@
 
 
         .payment-box h4 {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
 
             font-size: 13px;
 
@@ -330,6 +330,118 @@
             color: #d95f86;
 
             font-weight: bold;
+        }
+
+
+        .bank-info {
+            margin-top: 12px;
+
+            padding: 12px 15px;
+
+            background: #fff;
+
+            border: 1px solid #e3d5b9;
+
+            border-radius: 5px;
+        }
+
+
+        .bank-info-row {
+            display: grid;
+
+            grid-template-columns: 110px 15px 1fr;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        .bank-info-label {
+            color: #555;
+        }
+
+
+        .bank-info-colon {
+            text-align: center;
+
+            color: #777;
+        }
+
+
+        .bank-info-value {
+            color: #333;
+
+            font-weight: bold;
+        }
+
+
+
+        /* =========================
+           UPLOAD BUKTI
+        ========================= */
+
+        .upload-box {
+            margin-top: 15px;
+        }
+
+
+        .upload-label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #704354;
+        }
+
+
+        .upload-input {
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #d8b95f;
+
+            border-radius: 5px;
+
+            background: #fff;
+
+            font-size: 12px;
+
+            color: #555;
+        }
+
+
+        .upload-input:focus {
+            outline: none;
+
+            border-color: #d95f86;
+        }
+
+
+        .upload-success {
+            margin-top: 8px;
+
+            font-size: 12px;
+
+            color: #5f805d;
+
+            line-height: 1.5;
+        }
+
+
+        .upload-error {
+            margin-top: 8px;
+
+            font-size: 12px;
+
+            color: #b44d5f;
+
+            line-height: 1.5;
         }
 
 
@@ -382,6 +494,8 @@
             padding: 10px 15px;
 
             text-align: center;
+
+            cursor: pointer;
         }
 
 
@@ -394,6 +508,7 @@
 
             border-color: #d95f86;
         }
+
 
 
         .back-link-wrapper {
@@ -683,6 +798,11 @@
             }
 
 
+            .bank-info-row {
+                grid-template-columns: 100px 15px 1fr;
+            }
+
+
             .footer-content {
                 grid-template-columns: 1fr;
 
@@ -729,6 +849,16 @@
 
             .detail-value {
                 margin-bottom: 5px;
+            }
+
+
+            .bank-info-row {
+                grid-template-columns: 1fr;
+            }
+
+
+            .bank-info-colon {
+                display: none;
             }
 
 
@@ -865,6 +995,41 @@
 
 
         <!-- =========================
+             PESAN BERHASIL
+        ========================= -->
+
+        @if (session('success'))
+
+            <div class="upload-success">
+                {{ session('success') }}
+            </div>
+
+        @endif
+
+
+        <!-- =========================
+             ERROR UPLOAD
+        ========================= -->
+
+        @if ($errors->any())
+
+            <div class="upload-error">
+
+                @foreach ($errors->all() as $error)
+
+                    <div>
+                        {{ $error }}
+                    </div>
+
+                @endforeach
+
+            </div>
+
+        @endif
+
+
+
+        <!-- =========================
              DETAIL PESANAN
         ========================= -->
 
@@ -982,28 +1147,148 @@
                 </h4>
 
                 <p>
-
-                    Pesanan berhasil dibuat.
-                    Silakan hubungi admin Floréa melalui WhatsApp
-                    untuk mendapatkan informasi rekening pembayaran.
-
-                    <br><br>
-
-                    Nomor Pesanan:
-
+                    Silakan lakukan pembayaran melalui
                     <span class="payment-bank">
-                        {{ $order->invoice }}
+                        Transfer Bank BCA
                     </span>
-
-                    <br>
-
-                    Total Pembayaran:
-
-                    <span class="payment-bank">
-                        Rp {{ number_format($order->total, 0, ',', '.') }}
-                    </span>
-
+                    menggunakan informasi rekening berikut.
                 </p>
+
+
+                <div class="bank-info">
+
+                    <div class="bank-info-row">
+
+                        <span class="bank-info-label">
+                            Bank
+                        </span>
+
+                        <span class="bank-info-colon">
+                            :
+                        </span>
+
+                        <span class="bank-info-value">
+                            BCA
+                        </span>
+
+                    </div>
+
+
+                    <div class="bank-info-row">
+
+                        <span class="bank-info-label">
+                            No. Rekening
+                        </span>
+
+                        <span class="bank-info-colon">
+                            :
+                        </span>
+
+                        <span class="bank-info-value">
+                            1234567890
+                        </span>
+
+                    </div>
+
+
+                    <div class="bank-info-row">
+
+                        <span class="bank-info-label">
+                            Atas Nama
+                        </span>
+
+                        <span class="bank-info-colon">
+                            :
+                        </span>
+
+                        <span class="bank-info-value">
+                            Floréa
+                        </span>
+
+                    </div>
+
+
+                    <div class="bank-info-row">
+
+                        <span class="bank-info-label">
+                            Total
+                        </span>
+
+                        <span class="bank-info-colon">
+                            :
+                        </span>
+
+                        <span class="bank-info-value payment-bank">
+                            Rp {{ number_format($order->total, 0, ',', '.') }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     FORM UPLOAD BUKTI
+                ========================= -->
+
+                <form
+                    action="{{ route('checkout.upload-bukti', $order->id) }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    @csrf
+
+
+                    <div class="upload-box">
+
+                        <label
+                            for="bukti_transfer"
+                            class="upload-label"
+                        >
+                            Upload Bukti Transfer
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="bukti_transfer"
+                            name="bukti_transfer"
+                            class="upload-input"
+                            accept="image/jpeg,image/png"
+                            required
+                        >
+
+
+                        @if ($order->bukti_transfer)
+
+                            <div class="upload-success">
+
+                                Bukti transfer sudah tersimpan.
+
+                            </div>
+
+                        @endif
+
+                    </div>
+
+
+                    <div class="button-wrapper">
+
+                        <button
+                            type="submit"
+                            class="payment-button"
+                        >
+                            @if ($order->bukti_transfer)
+                                UPLOAD ULANG BUKTI TRANSFER
+                            @else
+                                UPLOAD BUKTI TRANSFER
+                            @endif
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
@@ -1012,43 +1297,12 @@
 
 
         <!-- =========================
-             BUTTON
+             BUTTON COD
         ========================= -->
 
-        <div class="button-wrapper">
+        @if ($order->metode_pembayaran !== 'Transfer Bank')
 
-            @if ($order->metode_pembayaran === 'Transfer Bank')
-
-                @php
-
-                    $whatsappNumber = '6281234567890';
-
-                    $whatsappMessage =
-                        "Halo Floréa, saya ingin melakukan pembayaran untuk pesanan "
-                        . $order->invoice
-                        . " dengan total Rp "
-                        . number_format($order->total, 0, ',', '.')
-                        . ". Mohon informasi rekening pembayaran.";
-
-                    $whatsappUrl =
-                        'https://wa.me/'
-                        . $whatsappNumber
-                        . '?text='
-                        . urlencode($whatsappMessage);
-
-                @endphp
-
-
-                <a
-                    href="{{ $whatsappUrl }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="payment-button"
-                >
-                    LANJUT PEMBAYARAN VIA WHATSAPP
-                </a>
-
-            @else
+            <div class="button-wrapper">
 
                 <a
                     href="{{ route('orders.my') }}"
@@ -1057,9 +1311,9 @@
                     LIHAT PESANAN SAYA
                 </a>
 
-            @endif
+            </div>
 
-        </div>
+        @endif
 
 
 
@@ -1088,92 +1342,102 @@
 
 <footer class="footer">
 
+    <div class="footer-container">
 
-    <div class="footer-content">
 
-
+        <!-- BRAND -->
         <div class="footer-brand">
 
             <img
                 src="{{ asset('images/logo-florea.png') }}"
-                alt="Logo Floréa"
+                alt="Floréa"
+                class="footer-logo"
             >
 
-            <h3>
+            <h2>
                 Floréa
-            </h3>
+            </h2>
 
             <p>
-                Fresh flowers untuk menghadirkan keindahan dan
-                kebahagiaan di setiap momen spesial Anda.
+                Fresh flowers untuk menghadirkan keindahan
+                dan kebahagiaan di setiap momen spesial Anda.
             </p>
 
         </div>
 
 
-
+        <!-- NAVIGASI -->
         <div class="footer-column">
 
-            <h4>
+            <h3>
                 Navigasi
-            </h4>
+            </h3>
 
-            <a href="{{ route('home') }}">
-                Home
-            </a>
+            <div class="footer-links">
 
-            <a href="{{ route('products.index') }}">
-                Fresh Flower
-            </a>
+                <a href="{{ route('home') }}">
+                    Home
+                </a>
 
-            <a href="{{ route('cart.index') }}">
-                Keranjang
-            </a>
+                <a href="{{ route('products.index') }}">
+                    Fresh Flower
+                </a>
 
-            <a href="{{ route('orders.my') }}">
-                Pesanan Saya
-            </a>
+                <a href="{{ route('cart.index') }}">
+                    Keranjang
+                </a>
+
+                <a href="{{ route('orders.my') }}">
+                    Pesanan Saya
+                </a>
+
+            </div>
 
         </div>
 
 
-
+        <!-- LAYANAN -->
         <div class="footer-column">
 
-            <h4>
+            <h3>
                 Layanan
-            </h4>
+            </h3>
 
-            <a href="{{ route('products.index') }}">
-                Bunga Segar
-            </a>
+            <div class="footer-links">
 
-            <a href="{{ route('products.index') }}">
-                Pengiriman Cepat
-            </a>
+                <a href="{{ route('products.index') }}">
+                    Bunga Segar
+                </a>
 
-            <a href="{{ route('products.index') }}">
-                Pembayaran Aman
-            </a>
+                <a href="{{ route('products.index') }}">
+                    Pengiriman Cepat
+                </a>
 
-            <a href="{{ route('products.index') }}">
-                Layanan 24/7
-            </a>
+                <a href="{{ route('products.index') }}">
+                    Pembayaran Aman
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Layanan Pelanggan
+                </a>
+
+            </div>
 
         </div>
 
 
-
+        <!-- INFORMASI TOKO -->
         <div class="footer-column">
 
-            <h4>
+            <h3>
                 Tentang Floréa
-            </h4>
+            </h3>
 
 
             <div class="footer-service">
 
 
+                <!-- ALAMAT -->
                 <div class="service-item">
 
                     <svg
@@ -1181,26 +1445,88 @@
                         viewBox="0 0 24 24"
                     >
 
-                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"></path>
+                        <path
+                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"
+                        />
 
                         <circle
                             cx="12"
                             cy="10"
                             r="2.5"
-                        ></circle>
+                        />
 
                     </svg>
 
                     <span>
-                        Fresh Flower untuk berbagai
-                        <br>
-                        momen istimewa.
+                        Jl. Jenderal Soedirman No. 25,
+                        Purbalingga, Jawa Tengah.
                     </span>
 
                 </div>
 
 
+                <!-- TELEPON -->
+                <div class="service-item">
 
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2
+                            19.79 19.79 0 0 1-8.63-3.07
+                            19.5 19.5 0 0 1-6-6
+                            19.79 19.79 0 0 1-3.07-8.67
+                            A2 2 0 0 1 4.11 2h3
+                            a2 2 0 0 1 2 1.72
+                            12.84 12.84 0 0 0 .7 2.81
+                            2 2 0 0 1-.45 2.11L8.09 9.91
+                            a16 16 0 0 0 6 6l1.27-1.27
+                            a2 2 0 0 1 2.11-.45
+                            12.84 12.84 0 0 0 2.81.7
+                            A2 2 0 0 1 22 16.92z"
+                        />
+
+                    </svg>
+
+                    <span>
+                        0812-3456-7890
+                    </span>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                        />
+
+                        <path
+                            d="M3 7l9 6 9-6"
+                        />
+
+                    </svg>
+
+                    <span>
+                        hello@florea.id
+                    </span>
+
+                </div>
+
+
+                <!-- JAM OPERASIONAL -->
                 <div class="service-item">
 
                     <svg
@@ -1212,43 +1538,16 @@
                             cx="12"
                             cy="12"
                             r="9"
-                        ></circle>
+                        />
 
-                        <path d="M12 7v5l3 2"></path>
-
-                    </svg>
-
-                    <span>
-                        Melayani kebutuhan bunga
-                        <br>
-                        dengan sepenuh hati.
-                    </span>
-
-                </div>
-
-
-
-                <div class="service-item">
-
-                    <svg
-                        class="service-icon"
-                        viewBox="0 0 24 24"
-                    >
-
-                        <path d="M20 11a8.1 8.1 0 0 0-15.5-2"></path>
-
-                        <path d="M4 5v4h4"></path>
-
-                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2"></path>
-
-                        <path d="M20 19v-4h-4"></path>
+                        <path
+                            d="M12 7v5l3 2"
+                        />
 
                     </svg>
 
                     <span>
-                        Pesanan diproses dengan aman
-                        <br>
-                        dan terpercaya.
+                        Senin–Sabtu, 08.00–17.00 WIB
                     </span>
 
                 </div>
@@ -1262,17 +1561,18 @@
     </div>
 
 
+    <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
 
         <p>
-            © {{ date('Y') }}
-            <span>Floréa</span>.
+
+            © {{ date('Y') }} <span>Floréa</span>.
             All Rights Reserved.
+
         </p>
 
     </div>
-
 
 </footer>
 

@@ -1504,18 +1504,16 @@
 
 
 
-{{-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== --}}
+========================= -->
 
 <footer class="footer">
-
 
     <div class="footer-container">
 
 
-        {{-- BRAND --}}
-
+        <!-- BRAND -->
         <div class="footer-brand">
 
             <img
@@ -1536,8 +1534,7 @@
         </div>
 
 
-        {{-- NAVIGASI --}}
-
+        <!-- NAVIGASI -->
         <div class="footer-column">
 
             <h3>
@@ -1567,8 +1564,7 @@
         </div>
 
 
-        {{-- LAYANAN --}}
-
+        <!-- LAYANAN -->
         <div class="footer-column">
 
             <h3>
@@ -1590,7 +1586,7 @@
                 </a>
 
                 <a href="{{ route('products.index') }}">
-                    Layanan 24/7
+                    Layanan Pelanggan
                 </a>
 
             </div>
@@ -1598,17 +1594,18 @@
         </div>
 
 
-        {{-- TENTANG FLORÉA --}}
-
+        <!-- INFORMASI TOKO -->
         <div class="footer-column">
 
             <h3>
                 Tentang Floréa
             </h3>
 
+
             <div class="footer-service">
 
 
+                <!-- ALAMAT -->
                 <div class="service-item">
 
                     <svg
@@ -1629,13 +1626,75 @@
                     </svg>
 
                     <span>
-                        Fresh Flower untuk berbagai
-                        momen istimewa.
+                        Jl. Jenderal Soedirman No. 25,
+                        Purbalingga, Jawa Tengah.
                     </span>
 
                 </div>
 
 
+                <!-- TELEPON -->
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2
+                            19.79 19.79 0 0 1-8.63-3.07
+                            19.5 19.5 0 0 1-6-6
+                            19.79 19.79 0 0 1-3.07-8.67
+                            A2 2 0 0 1 4.11 2h3
+                            a2 2 0 0 1 2 1.72
+                            12.84 12.84 0 0 0 .7 2.81
+                            2 2 0 0 1-.45 2.11L8.09 9.91
+                            a16 16 0 0 0 6 6l1.27-1.27
+                            a2 2 0 0 1 2.11-.45
+                            12.84 12.84 0 0 0 2.81.7
+                            A2 2 0 0 1 22 16.92z"
+                        />
+
+                    </svg>
+
+                    <span>
+                        0812-3456-7890
+                    </span>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="service-item">
+
+                    <svg
+                        class="service-icon"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                        />
+
+                        <path
+                            d="M3 7l9 6 9-6"
+                        />
+
+                    </svg>
+
+                    <span>
+                        hello@florea.id
+                    </span>
+
+                </div>
+
+
+                <!-- JAM OPERASIONAL -->
                 <div class="service-item">
 
                     <svg
@@ -1656,41 +1715,7 @@
                     </svg>
 
                     <span>
-                        Melayani kebutuhan bunga
-                        dengan sepenuh hati.
-                    </span>
-
-                </div>
-
-
-                <div class="service-item">
-
-                    <svg
-                        class="service-icon"
-                        viewBox="0 0 24 24"
-                    >
-
-                        <path
-                            d="M20 11a8.1 8.1 0 0 0-15.5-2"
-                        />
-
-                        <path
-                            d="M4 5v4h4"
-                        />
-
-                        <path
-                            d="M4 13a8.1 8.1 0 0 0 15.5 2"
-                        />
-
-                        <path
-                            d="M20 19v-4h-4"
-                        />
-
-                    </svg>
-
-                    <span>
-                        Pesanan diproses dengan
-                        aman dan terpercaya.
+                        Senin–Sabtu, 08.00–17.00 WIB
                     </span>
 
                 </div>
@@ -1704,18 +1729,18 @@
     </div>
 
 
-    {{-- FOOTER BOTTOM --}}
+    <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
 
         <p>
-            © {{ date('Y') }}
-            <span>Floréa</span>.
+
+            © {{ date('Y') }} <span>Floréa</span>.
             All Rights Reserved.
+
         </p>
 
     </div>
-
 
 </footer>
 
