@@ -15,7 +15,7 @@ class OrderController extends Controller
     {
         $orders = Order::with([
             'user',
-            'orderDetails.product'
+            'orderDetails.product',
         ])
             ->latest()
             ->get();
@@ -30,7 +30,7 @@ class OrderController extends Controller
     {
         $orders = Order::with([
             'user',
-            'orderDetails.product'
+            'orderDetails.product',
         ])
             ->latest()
             ->get();
@@ -45,7 +45,7 @@ class OrderController extends Controller
     {
         $order->load([
             'user',
-            'orderDetails.product'
+            'orderDetails.product',
         ]);
 
         return view('admin.orders.show', compact('order'));
@@ -111,42 +111,10 @@ class OrderController extends Controller
         }
 
         $order->load([
-            'orderDetails.product'
+            'orderDetails.product',
         ]);
 
         return view('orders.show', compact('order'));
-    }
-
-    /**
-     * Upload bukti transfer untuk pesanan customer.
-     */
-    public function uploadBuktiTransfer(Request $request, Order $order)
-    {
-        // Customer hanya boleh upload bukti
-        // untuk pesanan miliknya sendiri.
-        if ($order->user_id !== auth()->id()) {
-            abort(403);
-        }
-
-        $validated = $request->validate([
-            'bukti_transfer' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        // Simpan file ke:
-        // storage/app/public/bukti-transfer
-        $path = $validated['bukti_transfer']->store(
-            'bukti-transfer',
-            'public'
-        );
-
-        // Simpan lokasi file ke database.
-        $order->update([
-            'bukti_transfer' => $path,
-        ]);
-
-        return redirect()
-            ->route('checkout.success', $order->id)
-            ->with('success', 'Bukti transfer berhasil diupload.');
     }
 
     /**
@@ -156,7 +124,7 @@ class OrderController extends Controller
     {
         $order->load([
             'user',
-            'orderDetails.product'
+            'orderDetails.product',
         ]);
 
         return view('admin.orders.edit', compact('order'));
@@ -199,4 +167,3 @@ class OrderController extends Controller
             ->with('success', 'Pesanan berhasil dihapus.');
     }
 }
-

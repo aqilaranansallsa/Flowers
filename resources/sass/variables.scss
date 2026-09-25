@@ -1,0 +1,23 @@
+// Bootstrap variables
+//
+// Variabel warna dan pengaturan dasar Bootstrap.
+// File ini dipanggil oleh resources/sass/app.scss.
+
+// Body
+$body-bg: #fffdf5;
+$body-color: #333333;
+
+// Typography
+$font-family-sans-serif: "Instrument Sans", sans-serif;
+
+// Links
+$link-color: #164a3a;
+$link-decoration: none;
+
+// Border radius
+$border-radius: 0.5rem;
+$border-radius-sm: 0.375rem;
+$border-radius-lg: 0.75rem;
+
+// Spacing
+$spacer: 1rem;

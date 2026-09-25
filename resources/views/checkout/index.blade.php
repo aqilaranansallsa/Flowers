@@ -1,1385 +1,454 @@
-<!DOCTYPE html> 
-<html lang="id"> 
- 
-<head> 
- 
-    <meta charset="UTF-8"> 
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- 
-    <title>Detail Pesanan - Floréa</title> 
- 
- 
-    <style> 
- 
-        * { 
-            box-sizing: border-box; 
-        } 
- 
-        body { 
-            margin: 0; 
-            font-family: Arial, sans-serif; 
-            background-color: #fffaf0; 
-            color: #333; 
-        } 
- 
- 
-        /* ========================= 
-           NAVBAR 
-        ========================= */ 
- 
-        .navbar { 
-            min-height: 90px; 
-            padding: 10px 45px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            background-color: #fffdf7; 
-            border-bottom: 1px solid #f2d6a2; 
-        } 
- 
-        .brand { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        } 
- 
-        .logo-image { 
-            width: 62px; 
-            height: 62px; 
-            object-fit: contain; 
-        } 
- 
-        .brand-text h2 { 
-            margin: 0; 
-            font-family: Georgia, serif; 
-            font-style: italic; 
-            font-size: 25px; 
-            color: #d95f86; 
-        } 
- 
-        .brand-text p { 
-            margin: 4px 0 0; 
-            font-size: 12px; 
-            color: #77705f; 
-        } 
- 
-        .nav-menu { 
-            display: flex; 
-            align-items: center; 
-            gap: 28px; 
-        } 
- 
-        .nav-menu a { 
-            text-decoration: none; 
-            color: #4d493f; 
-            font-size: 14px; 
-            padding: 10px 4px; 
-            transition: 0.2s; 
-        } 
- 
-        .nav-menu a:hover { 
-            color: #d95f86; 
-        } 
- 
-        .nav-menu .active { 
-            color: #d95f86; 
-            border-bottom: 2px solid #e6b84f; 
-        } 
- 
-        .nav-button { 
-            display: flex !important; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-            padding: 9px 18px !important; 
-            border: 1px solid #e2b86d; 
-            border-radius: 6px; 
-            color: #4d493f !important; 
-            background-color: #fffdf7; 
-        } 
- 
-        .nav-button:hover { 
-            background-color: #fff4d8; 
-        } 
- 
-        .register-button { 
-            background-color: #f8d6df !important; 
-            border-color: #e7a3b6 !important; 
-        } 
- 
-        .register-button:hover { 
-            background-color: #f4bdce !important; 
-        } 
- 
-        .nav-icon { 
-            width: 20px; 
-            height: 20px; 
-            stroke: #d95f86; 
-            stroke-width: 1.8; 
-            fill: none; 
-            stroke-linecap: round; 
-            stroke-linejoin: round; 
-        } 
- 
-        .logout-form { 
-            display: inline; 
-        } 
- 
-        .logout-button { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            padding: 9px 18px; 
-            border: 1px solid #e2b86d; 
-            border-radius: 6px; 
-            background-color: #fffdf7; 
-            cursor: pointer; 
-            font-size: 14px; 
-            color: #4d493f; 
-        } 
- 
-        .logout-button:hover { 
-            background-color: #fff4d8; 
-        } 
- 
- 
-        /* ========================= 
-           CONTENT 
-        ========================= */ 
- 
-        .container { 
-            max-width: 1000px; 
-            margin: auto; 
-            padding: 40px 25px 50px; 
-        } 
- 
-        .detail-card { 
-            width: 100%; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            background-color: #fffdf8; 
-            border: 1px solid #e2cb98; 
-            border-radius: 7px; 
-            box-shadow: 0 3px 10px rgba(217, 145, 104, 0.07); 
-            overflow: hidden; 
-        } 
- 
- 
-        /* ========================= 
-           DETAIL HEADER 
-        ========================= */ 
- 
-        .detail-header { 
-            padding: 15px 18px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            gap: 20px; 
-            background-color: #fffdf7; 
-            border-bottom: 1px solid #ead9b4; 
-        } 
- 
-        .invoice-label { 
-            margin-bottom: 5px; 
-            font-size: 11px; 
-            color: #8b8175; 
-        } 
- 
-        .invoice { 
-            font-size: 15px; 
-            font-weight: bold; 
-            color: #4d493f; 
-        } 
- 
-        .status-wrapper { 
-            display: flex; 
-            gap: 7px; 
-            flex-wrap: wrap; 
-            justify-content: flex-end; 
-        } 
- 
-        .status { 
-            padding: 6px 10px; 
-            border-radius: 20px; 
-            font-size: 10px; 
-            font-weight: bold; 
-        } 
- 
-        .status-order { 
-            background-color: #fce2e9; 
-            color: #b94f70; 
-            border: 1px solid #e7b5c4; 
-        } 
- 
-        .status-payment { 
-            background-color: #fff1c9; 
-            color: #98752e; 
-            border: 1px solid #e5c879; 
-        } 
- 
- 
-        /* ========================= 
-           DETAIL BODY 
-        ========================= */ 
- 
-        .detail-body { 
-            padding: 20px; 
-        } 
- 
-        .section { 
-            margin-bottom: 22px; 
-        } 
- 
-        .section:last-child { 
-            margin-bottom: 0; 
-        } 
- 
-        .section-title { 
-            margin: 0 0 12px; 
-            padding-bottom: 8px; 
-            border-bottom: 1px solid #ead9b4; 
-            font-family: Georgia, serif; 
-            font-size: 16px; 
-            font-style: italic; 
-            color: #c9577b; 
-        } 
- 
-        .info-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 13px 28px; 
-        } 
- 
-        .info-item { 
-            font-size: 12px; 
-            line-height: 1.5; 
-            color: #6d685d; 
-        } 
- 
-        .info-item strong { 
-            display: block; 
-            margin-bottom: 3px; 
-            font-size: 10px; 
-            color: #4d493f; 
-        } 
- 
-        .address { 
-            line-height: 1.6; 
-        } 
- 
- 
-        /* ========================= 
-           PRODUCT 
-        ========================= */ 
- 
-        .product-list { 
-            border: 1px solid #ead9b4; 
-            border-radius: 6px; 
-            overflow: hidden; 
-        } 
- 
-        .product-item { 
-            padding: 12px 14px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            gap: 20px; 
-            border-bottom: 1px solid #ead9b4; 
-            background-color: #fffdf8; 
-        } 
- 
-        .product-item:last-child { 
-            border-bottom: none; 
-        } 
- 
-        .product-name { 
-            font-size: 12px; 
-            font-weight: bold; 
-            color: #4d493f; 
-        } 
- 
-        .product-detail { 
-            margin-top: 4px; 
-            font-size: 10px; 
-            color: #8a8173; 
-        } 
- 
-        .product-subtotal { 
-            font-size: 12px; 
-            font-weight: bold; 
-            color: #6d5c45; 
-            white-space: nowrap; 
-        } 
- 
- 
-        /* ========================= 
-           TOTAL 
-        ========================= */ 
- 
-        .total-box { 
-            padding: 14px 17px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            background: linear-gradient( 
-                90deg, 
-                #fff8df, 
-                #fff1f4 
-            ); 
-            border: 1px solid #e4cd91; 
-            border-radius: 6px; 
-        } 
- 
-        .total-label { 
-            font-size: 12px; 
-            font-weight: bold; 
-            color: #6d685d; 
-        } 
- 
-        .total-price { 
-            font-size: 17px; 
-            font-weight: bold; 
-            color: #d95f86; 
-        } 
- 
- 
-        /* ========================= 
-           PAYMENT 
-        ========================= */ 
- 
-        .payment-box { 
-            padding: 14px 16px; 
-            background-color: #fffaf0; 
-            border: 1px solid #ead9b4; 
-            border-radius: 6px; 
-        } 
- 
-        .payment-row { 
-            display: flex; 
-            justify-content: space-between; 
-            gap: 20px; 
-            padding: 6px 0; 
-            font-size: 12px; 
-            color: #6d685d; 
-        } 
- 
-        .payment-row strong { 
-            color: #4d493f; 
-        } 
- 
- 
-        /* ========================= 
-           BUKTI TRANSFER 
-        ========================= */ 
- 
-        .proof-box { 
-            padding: 15px; 
-            background-color: #fffaf0; 
-            border: 1px solid #ead9b4; 
-            border-radius: 6px; 
-            text-align: center; 
-        } 
- 
-        .proof-box p { 
-            margin: 0 0 12px; 
-            font-size: 11px; 
-            color: #77705f; 
-        } 
- 
-        .proof-image { 
-            display: block; 
-            max-width: 400px; 
-            max-height: 400px; 
-            width: auto; 
-            height: auto; 
-            margin: auto; 
-            border: 1px solid #dfc78f; 
-            border-radius: 6px; 
-        } 
- 
-        .no-proof { 
-            margin: 0; 
-            padding: 10px; 
-            background-color: #fff3d5; 
-            border: 1px solid #e7cf91; 
-            border-radius: 5px; 
-            color: #8a7239; 
-            font-size: 11px; 
-        } 
- 
- 
-        /* ========================= 
-           BUTTON 
-        ========================= */ 
- 
-        .action { 
-            display: flex; 
-            justify-content: flex-end; 
-            margin-top: 22px; 
-        } 
- 
-        .back-button { 
-            display: inline-block; 
-            padding: 8px 14px; 
-            text-decoration: none; 
-            color: #704354; 
-            background-color: #fffdf7; 
-            border: 1px solid #d8b95f; 
-            border-radius: 4px; 
-            font-size: 10px; 
-            font-weight: bold; 
-            transition: 0.2s; 
-        } 
- 
-        .back-button:hover { 
-            background-color: #fff0c2; 
-        } 
- 
- 
-        /* ========================= 
-           FOOTER 
-        ========================= */ 
- 
-        .footer { 
-            background: linear-gradient( 
-                135deg, 
-                #f8d5df 0%, 
-                #fff1d2 48%, 
-                #f9dfc9 100% 
-            ); 
-            border-top: 1px solid #e7c36f; 
-            color: #5d554d; 
-        } 
- 
-        .footer-container { 
-            max-width: 1150px; 
-            margin: auto; 
-            padding: 45px 35px 30px; 
-            display: grid; 
-            grid-template-columns: 1.5fr 1fr 1fr 1.1fr; 
-            gap: 40px; 
-        } 
- 
-        .footer-brand { 
-            padding-right: 20px; 
-        } 
- 
-        .footer-logo { 
-            width: 72px; 
-            height: 72px; 
-            object-fit: contain; 
-            margin-bottom: 8px; 
-        } 
- 
-        .footer-brand h2 { 
-            margin: 0 0 8px; 
-            font-family: Georgia, serif; 
-            font-size: 25px; 
-            font-style: italic; 
-            color: #c9577b; 
-        } 
- 
-        .footer-brand p { 
-            margin: 0; 
-            max-width: 300px; 
-            font-size: 13px; 
-            line-height: 1.7; 
-            color: #756d64; 
-        } 
- 
-        .footer-column h3 { 
-            margin: 0 0 16px; 
-            font-family: Georgia, serif; 
-            font-size: 16px; 
-            color: #9f526d; 
-        } 
- 
-        .footer-column h3::after { 
-            content: ""; 
-            display: block; 
-            width: 28px; 
-            height: 2px; 
-            margin-top: 7px; 
-            background: #d9ae4d; 
-            border-radius: 5px; 
-        } 
- 
-        .footer-links { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-        } 
- 
-        .footer-links a { 
-            text-decoration: none; 
-            color: #6d655c; 
-            font-size: 13px; 
-            transition: 0.2s; 
-        } 
- 
-        .footer-links a:hover { 
-            color: #d95f86; 
-            padding-left: 4px; 
-        } 
- 
-        .footer-service { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-        } 
- 
-        .service-item { 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 10px; 
-            font-size: 13px; 
-            line-height: 1.5; 
-            color: #6d655c; 
-        } 
- 
-        .service-icon { 
-            width: 20px; 
-            height: 20px; 
-            min-width: 20px; 
-            stroke: #d95f86; 
-            stroke-width: 1.7; 
-            fill: none; 
-            stroke-linecap: round; 
-            stroke-linejoin: round; 
-        } 
- 
-        .footer-bottom { 
-            border-top: 1px solid rgba(183, 139, 64, 0.25); 
-            padding: 17px 30px; 
-            text-align: center; 
-        } 
- 
-        .footer-bottom p { 
-            margin: 0; 
-            font-size: 12px; 
-            color: #7c7168; 
-        } 
- 
-        .footer-bottom span { 
-            color: #c9577b; 
-            font-weight: bold; 
-        } 
- 
- 
-        /* ========================= 
-           RESPONSIVE 
-        ========================= */ 
- 
-        @media (max-width: 1050px) { 
- 
-            .navbar { 
-                padding: 10px 25px; 
-            } 
- 
-            .nav-menu { 
-                gap: 15px; 
-            } 
- 
-            .footer-container { 
-                grid-template-columns: repeat(2, 1fr); 
-            } 
- 
-        } 
- 
- 
-        @media (max-width: 750px) { 
- 
-            .navbar { 
-                height: auto; 
-                flex-direction: column; 
-                gap: 15px; 
-                padding: 15px; 
-            } 
- 
-            .nav-menu { 
-                flex-wrap: wrap; 
-                justify-content: center; 
-                gap: 12px; 
-            } 
- 
-            .container { 
-                padding: 30px 18px 45px; 
-            } 
- 
-            .detail-header { 
-                align-items: flex-start; 
-                flex-direction: column; 
-            } 
- 
-            .status-wrapper { 
-                justify-content: flex-start; 
-            } 
- 
-            .info-grid { 
-                grid-template-columns: 1fr; 
-            } 
- 
-            .footer-container { 
-                grid-template-columns: 1fr; 
-                gap: 30px; 
-                padding: 35px 25px 25px; 
-            } 
- 
-            .footer-brand { 
-                padding-right: 0; 
-            } 
- 
-        } 
- 
- 
-        @media (max-width: 500px) { 
- 
-            .product-item { 
-                align-items: flex-start; 
-                flex-direction: column; 
-                gap: 6px; 
-            } 
- 
-            .product-subtotal { 
-                align-self: flex-end; 
-            } 
- 
-            .payment-row { 
-                flex-direction: column; 
-                gap: 3px; 
-            } 
- 
-            .total-box { 
-                gap: 15px; 
-            } 
- 
-            .proof-image { 
-                max-width: 100%; 
-            } 
- 
-        } 
- 
-    </style> 
- 
-</head> 
- 
- 
-<body> 
- 
- 
-<!-- ========================= 
-     NAVBAR 
-========================= --> 
- 
-<nav class="navbar"> 
- 
-    <div class="brand"> 
- 
-        <img 
-            src="{{ asset('images/logo-florea.png') }}" 
-            alt="Floréa" 
-            class="logo-image" 
-        > 
- 
-        <div class="brand-text"> 
- 
-            <h2> 
-                Floréa 
-            </h2> 
- 
-            <p> 
-                Fresh Flowers for Every Moment 
-            </p> 
- 
-        </div> 
- 
-    </div> 
- 
- 
-    <div class="nav-menu"> 
- 
-        <a href="{{ route('home') }}"> 
-            Home 
-        </a> 
- 
-        <a href="{{ route('products.index') }}"> 
-            Fresh Flower 
-        </a> 
- 
-        <a href="{{ route('cart.index') }}"> 
-            Keranjang 
-        </a> 
- 
-        <a 
-            href="{{ route('orders.my') }}" 
-            class="active" 
-        > 
-            Pesanan Saya 
-        </a> 
- 
- 
-        @guest 
- 
-            <a 
-                href="{{ route('login') }}" 
-                class="nav-button" 
-            > 
- 
-                <svg 
-                    class="nav-icon" 
-                    viewBox="0 0 24 24" 
-                > 
- 
-                    <circle 
-                        cx="12" 
-                        cy="8" 
-                        r="4" 
-                    /> 
- 
-                    <path 
-                        d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7" 
-                    /> 
- 
-                </svg> 
- 
-                Login 
- 
-            </a> 
- 
- 
-            <a 
-                href="{{ route('register') }}" 
-                class="nav-button register-button" 
-            > 
- 
-                <svg 
-                    class="nav-icon" 
-                    viewBox="0 0 24 24" 
-                > 
- 
-                    <circle 
-                        cx="9" 
-                        cy="8" 
-                        r="4" 
-                    /> 
- 
-                    <path 
-                        d="M2 21c0-4.2 3.1-7 7-7" 
-                    /> 
- 
-                    <path 
-                        d="M18 13v8" 
-                    /> 
- 
-                    <path 
-                        d="M14 17h8" 
-                    /> 
- 
-                </svg> 
- 
-                Register 
- 
-            </a> 
- 
-        @else 
- 
-            <form 
-                action="{{ route('logout') }}" 
-                method="POST" 
-                class="logout-form" 
-            > 
- 
-                @csrf 
- 
-                <button 
-                    type="submit" 
-                    class="logout-button" 
-                > 
- 
-                    <svg 
-                        class="nav-icon" 
-                        viewBox="0 0 24 24" 
-                    > 
- 
-                        <path 
-                            d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" 
-                        /> 
- 
-                        <path 
-                            d="M16 17l5-5-5-5" 
-                        /> 
- 
-                        <path 
-                            d="M21 12H9" 
-                        /> 
- 
-                    </svg> 
- 
-                    Logout 
- 
-                </button> 
- 
-            </form> 
- 
-        @endguest 
- 
-    </div> 
- 
-</nav> 
- 
- 
-<!-- ========================= 
-     CONTENT 
-========================= --> 
- 
-<div class="container"> 
- 
- 
-    <div class="detail-card"> 
- 
- 
-        <!-- HEADER --> 
- 
-        <div class="detail-header"> 
- 
-            <div> 
- 
-                <div class="invoice-label"> 
-                    NOMOR PESANAN 
-                </div> 
- 
-                <div class="invoice"> 
-                    {{ $order->invoice }} 
-                </div> 
- 
-            </div> 
- 
- 
-            <div class="status-wrapper"> 
- 
-                <span class="status status-order"> 
- 
-                    Pesanan: 
-                    {{ ucfirst($order->status) }} 
- 
-                </span> 
- 
-                <span class="status status-payment"> 
- 
-                    Pembayaran: 
-                    {{ ucfirst($order->status_pembayaran) }} 
- 
-                </span> 
- 
-            </div> 
- 
-        </div> 
- 
- 
-        <div class="detail-body"> 
- 
- 
-            <!-- INFORMASI PESANAN --> 
- 
-            <div class="section"> 
- 
-                <h2 class="section-title"> 
-                    Informasi Pesanan 
-                </h2> 
- 
- 
-                <div class="info-grid"> 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Tanggal Pesanan 
-                        </strong> 
- 
-                        {{ $order->created_at->format('d-m-Y H:i') }} 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Tanggal Pengiriman 
-                        </strong> 
- 
-                        {{ \Carbon\Carbon::parse($order->tanggal_pengiriman)->format('d-m-Y') }} 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Metode Pembayaran 
-                        </strong> 
- 
-                        {{ ucfirst($order->metode_pembayaran) }} 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Status Pembayaran 
-                        </strong> 
- 
-                        {{ ucfirst($order->status_pembayaran) }} 
- 
-                    </div> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- INFORMASI PENERIMA --> 
- 
-            <div class="section"> 
- 
-                <h2 class="section-title"> 
-                    Informasi Penerima 
-                </h2> 
- 
- 
-                <div class="info-grid"> 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Nama Penerima 
-                        </strong> 
- 
-                        {{ $order->nama_penerima }} 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Nomor HP 
-                        </strong> 
- 
-                        {{ $order->telp_penerima }} 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Alamat Pengiriman 
-                        </strong> 
- 
-                        <span class="address"> 
-                            {{ $order->alamat_pengiriman }} 
-                        </span> 
- 
-                    </div> 
- 
- 
-                    <div class="info-item"> 
- 
-                        <strong> 
-                            Catatan 
-                        </strong> 
- 
-                        {{ $order->catatan ?: '-' }} 
- 
-                    </div> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- PRODUK --> 
- 
-            <div class="section"> 
- 
-                <h2 class="section-title"> 
-                    Produk yang Dipesan 
-                </h2> 
- 
- 
-                <div class="product-list"> 
- 
-                    @foreach($order->orderDetails as $detail) 
- 
-                        <div class="product-item"> 
- 
-                            <div> 
- 
-                                <div class="product-name"> 
- 
-                                    {{ $detail->product->name }} 
- 
-                                </div> 
- 
-                                <div class="product-detail"> 
- 
-                                    {{ $detail->qty }} 
-                                    × 
-                                    Rp {{ number_format($detail->price, 0, ',', '.') }} 
- 
-                                </div> 
- 
-                            </div> 
- 
- 
-                            <div class="product-subtotal"> 
- 
-                                Rp 
-                                {{ number_format($detail->subtotal, 0, ',', '.') }} 
- 
-                            </div> 
- 
-                        </div> 
- 
-                    @endforeach 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- TOTAL --> 
- 
-            <div class="section"> 
- 
-                <div class="total-box"> 
- 
-                    <span class="total-label"> 
-                        Total Pembayaran 
-                    </span> 
- 
-                    <span class="total-price"> 
- 
-                        Rp 
-                        {{ number_format($order->total, 0, ',', '.') }} 
- 
-                    </span> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- PEMBAYARAN --> 
- 
-            <div class="section"> 
- 
-                <h2 class="section-title"> 
-                    Informasi Pembayaran 
-                </h2> 
- 
- 
-                <div class="payment-box"> 
- 
-                    <div class="payment-row"> 
- 
-                        <strong> 
-                            Metode Pembayaran 
-                        </strong> 
- 
-                        <span> 
-                            {{ ucfirst($order->metode_pembayaran) }} 
-                        </span> 
- 
-                    </div> 
- 
- 
-                    <div class="payment-row"> 
- 
-                        <strong> 
-                            Status Pembayaran 
-                        </strong> 
- 
-                        <span> 
-                            {{ ucfirst($order->status_pembayaran) }} 
-                        </span> 
- 
-                    </div> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- BUKTI TRANSFER --> 
- 
-            @if(strtolower($order->metode_pembayaran) === 'transfer bank') 
- 
-                <div class="section"> 
- 
-                    <h2 class="section-title"> 
-                        Bukti Transfer 
-                    </h2> 
- 
- 
-                    <div class="proof-box"> 
- 
-                        @if($order->bukti_transfer) 
- 
-                            <p> 
-                                Bukti transfer yang telah Anda upload: 
-                            </p> 
- 
-                            <img 
-                                src="{{ asset('storage/' . $order->bukti_transfer) }}" 
-                                alt="Bukti Transfer" 
-                                class="proof-image" 
-                            > 
- 
-                        @else 
- 
-                            <p class="no-proof"> 
-                                Bukti transfer belum diupload. 
-                            </p> 
- 
-                        @endif 
- 
-                    </div> 
- 
-                </div> 
- 
-            @endif 
- 
- 
-            <!-- BUTTON --> 
- 
-            <div class="action"> 
- 
-                <a 
-                    href="{{ route('orders.my') }}" 
-                    class="back-button" 
-                > 
-                    KEMBALI KE PESANAN SAYA 
-                </a> 
- 
-            </div> 
- 
- 
-        </div> 
- 
-    </div> 
- 
-</div> 
- 
- 
-<!-- ========================= 
-     FOOTER 
-========================= --> 
- 
-<footer class="footer"> 
- 
-    <div class="footer-container"> 
- 
- 
-        <div class="footer-brand"> 
- 
-            <img 
-                src="{{ asset('images/logo-florea.png') }}" 
-                alt="Floréa" 
-                class="footer-logo" 
-            > 
- 
-            <h2> 
-                Floréa 
-            </h2> 
- 
-            <p> 
-                Fresh flowers untuk menghadirkan keindahan 
-                dan kebahagiaan di setiap momen spesial Anda. 
-            </p> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h3> 
-                Navigasi 
-            </h3> 
- 
-            <div class="footer-links"> 
- 
-                <a href="{{ route('home') }}"> 
-                    Home 
-                </a> 
- 
-                <a href="{{ route('products.index') }}"> 
-                    Fresh Flower 
-                </a> 
- 
-                <a href="{{ route('cart.index') }}"> 
-                    Keranjang 
-                </a> 
- 
-                <a href="{{ route('orders.my') }}"> 
-                    Pesanan Saya 
-                </a> 
- 
-            </div> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h3> 
-                Layanan 
-            </h3> 
- 
-            <div class="footer-links"> 
- 
-                <a href="{{ route('products.index') }}"> 
-                    Bunga Segar 
-                </a> 
- 
-                <a href="{{ route('products.index') }}"> 
-                    Pengiriman Cepat 
-                </a> 
- 
-                <a href="{{ route('products.index') }}"> 
-                    Pembayaran Aman 
-                </a> 
- 
-                <a href="{{ route('products.index') }}"> 
-                    Layanan 24/7 
-                </a> 
- 
-            </div> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h3> 
-                Tentang Floréa 
-            </h3> 
- 
- 
-            <div class="footer-service"> 
- 
- 
-                <div class="service-item"> 
- 
-                    <svg 
-                        class="service-icon" 
-                        viewBox="0 0 24 24" 
-                    > 
- 
-                        <path 
-                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z" 
-                        /> 
- 
-                        <circle 
-                            cx="12" 
-                            cy="10" 
-                            r="2.5" 
-                        /> 
- 
-                    </svg> 
- 
-                    <span> 
-                        Fresh Flower untuk berbagai 
-                        momen istimewa. 
-                    </span> 
- 
-                </div> 
- 
- 
-                <div class="service-item"> 
- 
-                    <svg 
-                        class="service-icon" 
-                        viewBox="0 0 24 24" 
-                    > 
- 
-                        <circle 
-                            cx="12" 
-                            cy="12" 
-                            r="9" 
-                        /> 
- 
-                        <path 
-                            d="M12 7v5l3 2" 
-                        /> 
- 
-                    </svg> 
- 
-                    <span> 
-                        Melayani kebutuhan bunga 
-                        dengan sepenuh hati. 
-                    </span> 
- 
-                </div> 
- 
- 
-                <div class="service-item"> 
- 
-                    <svg 
-                        class="service-icon" 
-                        viewBox="0 0 24 24" 
-                    > 
- 
-                        <path 
-                            d="M20 11a8.1 8.1 0 0 0-15.5-2" 
-                        /> 
- 
-                        <path 
-                            d="M4 5v4h4" 
-                        /> 
- 
-                        <path 
-                            d="M4 13a8.1 8.1 0 0 0 15.5 2" 
-                        /> 
- 
-                        <path 
-                            d="M20 19v-4h-4" 
-                        /> 
- 
-                    </svg> 
- 
-                    <span> 
-                        Pesanan diproses dengan 
-                        aman dan terpercaya. 
-                    </span> 
- 
-                </div> 
- 
- 
-            </div> 
- 
-        </div> 
- 
- 
-    </div> 
- 
- 
-    <div class="footer-bottom"> 
- 
-        <p> 
- 
-            © {{ date('Y') }} <span>Floréa</span>. 
-            All Rights Reserved. 
- 
-        </p> 
- 
-    </div> 
- 
-</footer> 
- 
- 
-</body> 
- 
-</html>
+@extends('layouts.app')
+
+@section('title', 'Pemesanan - Floréa')
+
+@php $activeNav = 'cart'; @endphp
+
+@section('content')
+
+<main class="checkout-container">
+
+    {{-- STEP INDICATOR --}}
+    <div class="checkout-steps">
+        <div class="step done">
+            <div class="step-circle">✓</div>
+            <span>Keranjang</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+            <div class="step-circle">2</div>
+            <span>Pemesanan</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+            <div class="step-circle">3</div>
+            <span>Pembayaran</span>
+        </div>
+    </div>
+
+    @if ($errors->any())
+        <div class="alert alert-error">
+            ⚠️ Periksa kembali data pemesanan yang kamu masukkan.
+        </div>
+    @endif
+
+    <form action="{{ route('checkout.store') }}" method="POST">
+        @csrf
+
+        <div class="checkout-layout">
+
+            {{-- ==================== KOLOM KIRI ==================== --}}
+            <div class="checkout-left">
+
+                {{-- DATA PENERIMA --}}
+                <section class="checkout-card">
+                    <div class="card-title">
+                        <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
+                        </svg>
+                        DATA PENERIMA
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama_penerima">Nama Lengkap</label>
+                        <input type="text" id="nama_penerima" name="nama_penerima"
+                               class="form-control" placeholder="Nama penerima"
+                               value="{{ old('nama_penerima', auth()->user()->name) }}" required>
+                        @error('nama_penerima')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control readonly-input"
+                                   value="{{ auth()->user()->email }}" readonly>
+                            <small class="form-hint">Email tidak dapat diubah</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="telp_penerima">No. Telepon</label>
+                            <input type="text" id="telp_penerima" name="telp_penerima"
+                                   class="form-control" placeholder="Contoh: 08123456789"
+                                   value="{{ old('telp_penerima', auth()->user()->telp) }}" required>
+                            @error('telp_penerima')
+                                <div class="field-error">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </section>
+
+                {{-- DATA PENGIRIMAN --}}
+                <section class="checkout-card">
+                    <div class="card-title">
+                        <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/>
+                            <circle cx="12" cy="10" r="2.5"/>
+                        </svg>
+                        DATA PENGIRIMAN
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat_pengiriman">Alamat Lengkap</label>
+                        <textarea id="alamat_pengiriman" name="alamat_pengiriman"
+                                  class="form-control" rows="3"
+                                  placeholder="Nama jalan, nomor, RT/RW, kelurahan, kota"
+                                  required>{{ old('alamat_pengiriman') }}</textarea>
+                        @error('alamat_pengiriman')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- CARA PENERIMAAN --}}
+                    <div class="form-group">
+                        <label>Cara Penerimaan</label>
+                        <div class="delivery-options">
+
+                            <label class="delivery-option-card {{ old('jenis_penerimaan', 'ambil') != 'kirim' ? 'selected' : '' }}" id="card-ambil">
+                                <input type="radio" name="jenis_penerimaan" value="ambil"
+                                       {{ old('jenis_penerimaan', 'ambil') != 'kirim' ? 'checked' : '' }}
+                                       onchange="toggleJenisPenerimaan(this)">
+                                <div class="delivery-option-content">
+                                    <span class="delivery-icon">🏪</span>
+                                    <div>
+                                        <strong>Ambil Sendiri</strong>
+                                        <small>Ambil langsung di toko</small>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="delivery-option-card {{ old('jenis_penerimaan') == 'kirim' ? 'selected' : '' }}" id="card-kirim">
+                                <input type="radio" name="jenis_penerimaan" value="kirim"
+                                       {{ old('jenis_penerimaan') == 'kirim' ? 'checked' : '' }}
+                                       onchange="toggleJenisPenerimaan(this)">
+                                <div class="delivery-option-content">
+                                    <span class="delivery-icon">🚚</span>
+                                    <div>
+                                        <strong>Dikirim</strong>
+                                        <small>Diantar ke alamat kamu</small>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    {{-- TANGGAL AMBIL — hanya tampil kalau pilih "Ambil Sendiri" --}}
+                    <div class="form-group" id="tanggal-wrapper"
+                         style="{{ old('jenis_penerimaan') == 'kirim' ? 'display:none' : '' }}">
+                        <label for="tanggal_pengiriman">📅 Tanggal Ambil</label>
+                        <input type="date" id="tanggal_pengiriman" name="tanggal_pengiriman"
+                               class="form-control form-control-date"
+                               value="{{ old('tanggal_pengiriman') }}"
+                               min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                        <small class="form-hint">Pilih tanggal kamu akan mengambil pesanan di toko (minimal H+1)</small>
+                        @error('tanggal_pengiriman')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- INFO kalau pilih dikirim --}}
+                    <div id="kirim-info" class="kirim-info-box"
+                         style="{{ old('jenis_penerimaan') != 'kirim' ? 'display:none' : '' }}">
+                        🚚 Pesanan kamu akan dikirim. Admin akan mengonfirmasi jadwal pengiriman melalui status pesanan.
+                    </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label for="catatan">Catatan <span class="label-optional">(opsional)</span></label>
+                        <textarea id="catatan" name="catatan" class="form-control" rows="2"
+                                  placeholder="Contoh: tolong dibungkus kado, warna pita merah...">{{ old('catatan') }}</textarea>
+                    </div>
+
+                </section>
+
+                {{-- METODE PEMBAYARAN --}}
+                <section class="checkout-card">
+                    <div class="card-title">
+                        <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="5" width="20" height="14" rx="2"/>
+                            <path d="M2 10h20"/>
+                        </svg>
+                        METODE PEMBAYARAN
+                    </div>
+
+                    <div class="payment-options">
+                        <label class="payment-option-card {{ old('metode_pembayaran') == 'Transfer Bank' ? 'selected' : '' }}">
+                            <input type="radio" name="metode_pembayaran" value="Transfer Bank"
+                                   {{ old('metode_pembayaran') == 'Transfer Bank' ? 'checked' : '' }}
+                                   required onchange="toggleBankOptions(); selectPayment(this)">
+                            <div class="payment-option-content">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                    <path d="M2 10h20"/>
+                                </svg>
+                                <div>
+                                    <strong>Transfer Bank</strong>
+                                    <small>BCA, BRI, Mandiri</small>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option-card {{ old('metode_pembayaran') == 'COD' ? 'selected' : '' }}">
+                            <input type="radio" name="metode_pembayaran" value="COD"
+                                   {{ old('metode_pembayaran') == 'COD' ? 'checked' : '' }}
+                                   onchange="toggleBankOptions(); selectPayment(this)">
+                            <div class="payment-option-content">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+                                </svg>
+                                <div>
+                                    <strong>COD</strong>
+                                    <small>Bayar saat diterima</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="bank-options"
+                         class="bank-options {{ old('metode_pembayaran') == 'Transfer Bank' ? 'show' : '' }}">
+                        <div class="bank-title">Pilih bank tujuan transfer</div>
+                        <div class="bank-list">
+                            <label class="bank-option">
+                                <input type="radio" name="bank_transfer" value="BCA"
+                                       {{ old('bank_transfer') == 'BCA' ? 'checked' : '' }}>
+                                <span>BCA</span>
+                            </label>
+                            <label class="bank-option">
+                                <input type="radio" name="bank_transfer" value="BRI"
+                                       {{ old('bank_transfer') == 'BRI' ? 'checked' : '' }}>
+                                <span>BRI</span>
+                            </label>
+                            <label class="bank-option">
+                                <input type="radio" name="bank_transfer" value="Mandiri"
+                                       {{ old('bank_transfer') == 'Mandiri' ? 'checked' : '' }}>
+                                <span>Mandiri</span>
+                            </label>
+                        </div>
+                        @error('bank_transfer')
+                            <div class="field-error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    @error('metode_pembayaran')
+                        <div class="field-error">{{ $message }}</div>
+                    @enderror
+                </section>
+
+            </div>
+
+            {{-- ==================== KOLOM KANAN — RINGKASAN ==================== --}}
+            <div class="checkout-right">
+                <div class="checkout-card checkout-summary-sticky">
+
+                    <div class="card-title">
+                        <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                        </svg>
+                        RINGKASAN PESANAN
+                    </div>
+
+                    <div class="order-items">
+                        @foreach ($products as $product)
+                            @php
+                                $qty      = $cart[$product->id];
+                                $subtotal = $product->price * $qty;
+                            @endphp
+                            <div class="product-item">
+                                <div class="product-item-info">
+                                    <h3>{{ $product->name }}</h3>
+                                    <p>{{ $qty }} × Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                                </div>
+                                <div class="product-item-price">
+                                    Rp {{ number_format($subtotal, 0, ',', '.') }}
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="checkout-total">
+                        <span>Total Pembayaran</span>
+                        <span>Rp {{ number_format($total, 0, ',', '.') }}</span>
+                    </div>
+
+                    <button type="submit" class="order-button">
+                        Lanjut ke Pembayaran →
+                    </button>
+
+                    <a href="{{ route('cart.index') }}" class="back-link-sm"
+                       style="display:block; text-align:center; margin-top:12px;">
+                        ← Kembali ke Keranjang
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</main>
+
+@endsection
+
+@push('styles')
+<style>
+    .checkout-steps {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 28px 0 22px;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #bbb;
+    }
+    .step-circle {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: bold;
+        color: #bbb;
+        background: #fff;
+    }
+    .step.done .step-circle  { background: #d95f86; border-color: #d95f86; color: #fff; }
+    .step.active .step-circle { background: #fff; border-color: #d95f86; color: #d95f86; }
+    .step.active span { color: #d95f86; font-weight: 600; }
+    .step-line { flex: 1; height: 2px; background: #eee; min-width: 50px; margin-bottom: 20px; }
+
+    .checkout-layout {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 24px;
+        align-items: start;
+    }
+    .checkout-summary-sticky { position: sticky; top: 20px; }
+
+    .form-hint { display: block; margin-top: 5px; font-size: 11px; color: #aaa; }
+    .label-optional { font-size: 11px; color: #aaa; font-weight: normal; }
+    .form-control-date { cursor: pointer; font-size: 14px; color: #444; }
+
+    /* CARA PENERIMAAN */
+    .delivery-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .delivery-option-card {
+        border: 2px solid #e5d6b4;
+        border-radius: 8px;
+        padding: 14px;
+        cursor: pointer;
+        transition: 0.2s;
+        background: #fffdf7;
+    }
+    .delivery-option-card:hover { border-color: #d95f86; background: #fff8f9; }
+    .delivery-option-card.selected { border-color: #d95f86; background: #fff0f4; }
+    .delivery-option-card input[type="radio"] { display: none; }
+    .delivery-option-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .delivery-icon { font-size: 22px; }
+    .delivery-option-content strong { display: block; font-size: 13px; color: #333; }
+    .delivery-option-content small { font-size: 11px; color: #999; }
+
+    /* INFO DIKIRIM */
+    .kirim-info-box {
+        padding: 12px 15px;
+        background: #fff8e1;
+        border: 1px solid #f0d080;
+        border-radius: 7px;
+        font-size: 13px;
+        color: #7a5c00;
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+
+    /* PAYMENT CARDS */
+    .payment-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .payment-option-card {
+        border: 2px solid #e5d6b4;
+        border-radius: 8px;
+        padding: 14px;
+        cursor: pointer;
+        transition: 0.2s;
+        background: #fffdf7;
+    }
+    .payment-option-card:hover { border-color: #d95f86; background: #fff8f9; }
+    .payment-option-card.selected { border-color: #d95f86; background: #fff0f4; }
+    .payment-option-card input[type="radio"] { display: none; }
+    .payment-option-content { display: flex; align-items: center; gap: 10px; }
+    .payment-option-content svg { width: 22px; height: 22px; stroke: #d95f86; flex-shrink: 0; }
+    .payment-option-content strong { display: block; font-size: 13px; color: #333; }
+    .payment-option-content small { font-size: 11px; color: #999; }
+
+    .summary-divider { height: 1px; background: #eadfc8; margin: 14px 0; }
+
+    @media (max-width: 900px) {
+        .checkout-layout { grid-template-columns: 1fr; }
+        .checkout-summary-sticky { position: static; }
+    }
+    @media (max-width: 500px) {
+        .delivery-options, .payment-options { grid-template-columns: 1fr; }
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+    function toggleJenisPenerimaan(input) {
+        const tanggalWrapper = document.getElementById('tanggal-wrapper');
+        const kirimInfo      = document.getElementById('kirim-info');
+        const tanggalInput   = document.getElementById('tanggal_pengiriman');
+
+        const isKirim = input.value === 'kirim';
+
+        tanggalWrapper.style.display = isKirim ? 'none' : '';
+        kirimInfo.style.display      = isKirim ? '' : 'none';
+
+        // Kalau dikirim, hapus required supaya tidak block submit
+        tanggalInput.required = !isKirim;
+
+        // Update tampilan card
+        document.querySelectorAll('.delivery-option-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        input.closest('.delivery-option-card').classList.add('selected');
+    }
+
+    function toggleBankOptions() {
+        const transfer = document.querySelector('input[value="Transfer Bank"]');
+        const box      = document.getElementById('bank-options');
+        box.classList.toggle('show', transfer.checked);
+    }
+
+    function selectPayment(input) {
+        document.querySelectorAll('.payment-option-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        input.closest('.payment-option-card').classList.add('selected');
+    }
+</script>
+@endpush

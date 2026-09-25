@@ -46,13 +46,18 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        // Kalau pilih "Dikirim", isi tanggal_pengiriman dengan hari ini otomatis
+        if ($request->input('jenis_penerimaan') === 'kirim') {
+            $request->merge(['tanggal_pengiriman' => date('Y-m-d')]);
+        }
+
         $validated = $request->validate([
-            'nama_penerima' => 'required|string|max:255',
-            'telp_penerima' => 'required|string|max:20',
-            'alamat_pengiriman' => 'required|string',
+            'nama_penerima'      => 'required|string|max:255',
+            'telp_penerima'      => 'required|string|max:20',
+            'alamat_pengiriman'  => 'required|string',
             'tanggal_pengiriman' => 'required|date',
-            'catatan' => 'nullable|string',
-            'metode_pembayaran' => 'required|string|max:50',
+            'catatan'            => 'nullable|string',
+            'metode_pembayaran'  => 'required|string|max:50',
         ]);
 
         $cart = $request->session()->get('cart', []);

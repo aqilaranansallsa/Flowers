@@ -1,28 +1,23 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.admin')
 
-    <title>Dashboard Admin - Fresh Flower</title>
-</head>
-<body>
+@section('title', 'Dashboard Admin - Fresh Flower')
 
-    <h1>Dashboard Admin</h1>
+@section('content')
 
-    <hr>
+<h1>Dashboard Admin</h1>
 
-    <h2>Total Produk</h2>
-    <p>{{ $totalProduk }}</p>
+<hr>
 
-    <h2>Pesanan Baru</h2>
-    <p>{{ $pesananBaru }}</p>
+<h2>Total Produk</h2>
+<p>{{ $totalProduk }}</p>
 
-    <h2>Pesanan Diproses</h2>
-    <p>{{ $pesananDiproses }}</p>
+<h2>Pesanan Baru</h2>
+<p>{{ $pesananBaru }}</p>
 
-    <h2>Total Penjualan</h2>
-    <p>Rp {{ number_format($totalPenjualan, 0, ',', '.') }}</p>
+<h2>Pesanan Diproses</h2>
+<p>{{ $pesananDiproses }}</p>
 
-</body>
-</html>
+<h2>Total Penjualan</h2>
+<p>Rp {{ number_format($totalPenjualan, 0, ',', '.') }}</p>
+
+@endsection
